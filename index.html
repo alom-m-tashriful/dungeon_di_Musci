@@ -787,8 +787,8 @@
   <h3>Controlli</h3>
   <ul class="rules-list">
     <li><span class="key">W A S D</span> Movimento in prima persona (avanti, sinistra, indietro, destra)</li>
-    <li><span class="key">Mouse</span> Rotazione della visuale (oppure frecce ← →)</li>
-    <li><span class="key">F / Spazio / Click sx</span> Sparare / interagire con i PC</li>
+    <li><span class="key">Mouse</span> Rotazione della visuale</li>
+    <li><span class="key">F</span> Sparare / interagire con i PC</li>
     <li><span class="key">R</span> Riavviare il gioco dalla schermata finale</li>
   </ul>
 
@@ -802,13 +802,13 @@
 
   <h3>Transizione</h3>
   <div class="box box-teal" style="margin: 0.75rem 0 1.5rem;">
-    <p style="margin:0; font-size:0.88rem;">Dopo il secondo PC crashato appare una scena di testo (la convocazione dal Preside/Musci), i movimenti si bloccano e si entra nel Livello 2.</p>
+    <p style="margin:0; font-size:0.88rem;">Dopo il secondo PC crashato appare una scena di testo (la convocazione dal Musci), i movimenti si bloccano e si entra nel Livello 2.</p>
   </div>
 
   <h3>Livello 2 — Boss Fight</h3>
   <ul class="rules-list">
     <li><span class="key">Musci</span> Boss con 10 HP — si avvicina se lontano, scappa se troppo vicino</li>
-    <li><span class="key">Proiettili</span> Lancia testi di sanzione ogni 2 secondi ("Brutto Voto", "C.d.C."…)</li>
+    <li><span class="key">Proiettili</span> Lancia testi di sanzione ogni 2 secondi ("Brutto Voto", "Nota sul Registro", "C.d.C."…)</li>
     <li><span class="key">10 colpi</span> Per sconfiggere il boss → vittoria</li>
   </ul>
 
@@ -817,7 +817,7 @@
     <div class="box box-red" style="margin:0; text-align:center;">
       <p style="font-size:1.4rem; margin-bottom:0.4rem;">💀</p>
       <strong style="color: var(--accent3);">BOCCIATO!</strong>
-      <p style="font-size:0.8rem; margin:0.3rem 0 0; color:var(--muted);">HP = 0 oppure timer scaduto</p>
+      <p style="font-size:0.8rem; margin:0.3rem 0 0; color:var(--muted);">HP Giocatore = 0 oppure timer scaduto</p>
     </div>
     <div class="box box-teal" style="margin:0; text-align:center;">
       <p style="font-size:1.4rem; margin-bottom:0.4rem;">🎉</p>
@@ -892,8 +892,8 @@
 
     <span class="cm"># 1. Input</span>
     <span class="fn">leggi</span> tastiera e mouse
-    <span class="kw">se</span> WASD/frecce → <span class="fn">muovi</span> giocatore (con sliding sui muri)
-    <span class="kw">se</span> F/Spazio/click → <span class="fn">spara</span> proiettile (se ricaricato)
+    <span class="kw">se</span> WASD → <span class="fn">muovi</span> giocatore (con sliding sui muri)
+    <span class="kw">se</span> F → <span class="fn">spara</span> proiettile
     <span class="kw">se</span> vicino a PC e premi F → <span class="fn">sabota</span> PC (BSOD)
 
     <span class="cm"># 2. Aggiornamento stato</span>
@@ -1006,7 +1006,7 @@
       <div class="tl-date">24 / 05 / 2026 &nbsp;·&nbsp; ore 19:30</div>
       <div class="tl-title">Il cambio di idea</div>
       <div class="tl-body">
-        Il progetto originale (<em>Dungeon of Aldric</em>, RPG fantasy con 5 livelli generati a caso, inventario, statistiche, chiavi e barra della sanità mentale) era esploso a quasi 2000 righe su <em>Cursor</em>. I token finivano subito, i bug erano ovunque e non si capiva più nulla. Insieme all'AI ho deciso di azzerare le parti pesanti e trasformare tutto in una parodia scolastica con 2 livelli fatti bene.
+        Il progetto originale (<em>Dungeon of Aldric</em>, RPG fantasy con 5 livelli generati a caso, inventario, statistiche, chiavi e barra della sanità mentale) era esploso a quasi 2000 righe su <em>Cursor</em>. I token finivano subito, i bug erano ovunque e non si capiva più nulla. Ho deciso di azzerare le parti pesanti e trasformare tutto in una parodia scolastica con 2 livelli fatti bene.
       </div>
     </div>
 
@@ -1030,7 +1030,7 @@
       <div class="tl-date">27 / 05 / 2026 &nbsp;·&nbsp; ore 20:15</div>
       <div class="tl-title">Transizione al Livello 2 — passaggio a Claude</div>
       <div class="tl-body">
-        Finiti i token mensili su <em>Cursor</em>, ho spostato il codice su <em>Claude</em> (versione free). Il gioco crashava alla transizione perché mancava la costante <code>BOSS_WALL_COL</code>. Abbiamo definito la costante e modificato <code>cast_rays()</code> per colorare i muri di viola scuro quando la modalità boss è attiva.
+        Finiti i token mensili su <em>Cursor</em>, ho spostato il codice su <em>Claude</em>. Il gioco crashava alla transizione perché mancava la costante <code>BOSS_WALL_COL</code>. Abbiamo definito la costante e modificato <code>cast_rays()</code> per colorare i muri di viola scuro quando la modalità boss è attiva.
       </div>
     </div>
 
@@ -1038,7 +1038,7 @@
       <div class="tl-date">28 / 05 / 2026 &nbsp;·&nbsp; ore 01:10</div>
       <div class="tl-title">Z-sort, graffiti e compatibilità IDLE</div>
       <div class="tl-body">
-        Ultimo problema: i testi delle sanzioni di Musci e i graffiti si vedevano sopra i nemici vicini a causa dell'overlapping. Abbiamo implementato la <code>render_queue</code> ordinata per distanza. Aggiunto anche il <code>try-except</code> sull'audio per garantire il funzionamento sui PC della scuola.
+        Ultimo problema: i testi delle sanzioni di Musci e i graffiti si vedevano sopra i nemici vicini a causa dell'overlapping. Abbiamo implementato la <code>render_queue</code> ordinata per distanza. Aggiunto anche il <code>try-except</code> sull'audio per garantire il funzionamento sui PC della scuola senza la cassa.
       </div>
     </div>
 
