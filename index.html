@@ -246,6 +246,21 @@
     .meta-grid { grid-template-columns: 1fr 1fr; }
     h2 { font-size: 1.4rem; }
   }
+  /* LIGHTBOX */
+  .screenshot-item img { cursor: pointer; transition: opacity 0.2s; }
+  .screenshot-item img:hover { opacity: 0.85; }
+
+  #lightbox {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.88); backdrop-filter: blur(8px);
+    align-items: center; justify-content: center; cursor: zoom-out;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 90vw; max-height: 90vh; border-radius: 10px;
+    border: 1px solid var(--border2); box-shadow: 0 0 60px rgba(176,106,255,0.2);
+    cursor: default;
+  }
 </style>
 </head>
 <body>
@@ -441,8 +456,8 @@
 
   <p>Le funzioni di disegno fondamentali dentro la classe <code>Game</code> sono:</p>
   <ul class="rules-list">
-    <li><span class="key">cast_rays</span> Proietta 180 raggi per coprire la visuale del giocatore, calcola la distanza e disegna strisce verticali di muro in 3D. Se <code>boss_mode</code> è attivo, colora i muri di viola scuro sfumato. Restituisce lo <code>zbuf</code> (distanze dei muri per ogni raggio).</li>
-    <li><span class="key">draw</span> Raccoglie tutti gli oggetti 3D in una lista <code>render_queue</code> con le loro distanze, li ordina dal più lontano al più vicino (Z-sorting) e li disegna in ordine di priorità: graffiti (+0.05 di offset, sempre dietro), poi PC, poi nemici (-0.05 di offset, sempre davanti). Poi disegna il HUD 2D sopra a tutto.</li>
+    <li><span class="key">cast_rays</span> Proietta 180 raggi per coprire la visuale del giocatore, calcola la distanza e disegna strisce verticali di muro in 3D. Se boss_mode è attivo, colora i muri di viola scuro sfumato. Restituisce lo zbuf (distanze dei muri per ogni raggio).</li>
+    <li><span class="key">draw</span> Raccoglie tutti gli oggetti 3D in una lista render_queue con le loro distanze, li ordina dal più lontano al più vicino (Z-sorting) e li disegna in ordine di priorità: graffiti (+0.05 di offset, sempre dietro), poi PC, poi nemici (-0.05 di offset, sempre davanti). Poi disegna il HUD 2D sopra a tutto.</li>
     <li><span class="key">draw_hud</span> Disegna la barra del Voto, il timer con i colori dinamici (nero → giallo a 20 sec → rosso a 10 sec), il contatore PC, la barra Aura del boss e il mirino rosso.</li>
   </ul>
 
@@ -583,7 +598,7 @@
 
     <div class="tl-item">
       <div class="tl-date">27 / 05 / 2026 &nbsp;·&nbsp; ore 18:30 — Audio sintetizzato</div>
-      <div class="tl-body">Ho aggiunto tutta la parte audio generata matematicamente: la funzione <code>make_tone()</code> con tre tipi di onda (sinusoidale, quadrata, rumore bianco). Ho poi costruito la <code>SoundBank</code> con tutti i suoni necessari: lo sparo (onda quadra ad alta frequenza), il danno (rumore bianco), i tre accordi calanti del game over, il suono del PC in crash e il loop del boss. Tutto dentro un <code>try-except</code> per il caso in cui l'audio non funzioni.</div>
+      <div class="tl-body">Ho aggiunto tutta la parte audio generata matematicamente: la funzione <code>make_tone()</code> con tre tipi di onda (sinusoidale, quadrata, rumore bianco). Ho poi costruito la <code>SoundBank</code> con tutti i suoni necessari: lo sparo (onda quadra ad alta frequenza), il danno (rumore bianco), i tre accordi calanti del game over, il suono del PC in crash e il loop del boss. Tutto dentro un <code>try-except</code> per il caso in cui l'audio non funzioni. Infatti, proprio oggi a scuola ho provato a lanciare il gioco dal PC di uno studente e l'applicazione è andata in crash perché non era collegato alcun dispositivo di output audio.</div>
     </div>
 
     <div class="tl-item">
@@ -836,6 +851,19 @@
 <footer>
   M Tashriful Alom &nbsp;·&nbsp; 3 BTLC &nbsp;·&nbsp; Dungeon di Musci &nbsp;·&nbsp; A.S. 2025–2026
 </footer>
-
+<div id="lightbox" onclick="this.classList.remove('open')">
+  <img id="lightbox-img" src="" alt="">
+</div>
+<script>
+  document.querySelectorAll('.screenshot-item img').forEach(img => {
+    img.addEventListener('click', () => {
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox').classList.add('open');
+    });
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+  });
+</script>
 </body>
 </html>
