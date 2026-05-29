@@ -299,12 +299,12 @@
     <div class="feature-card">
       <span class="icon">✍️</span>
       <h4>Graffiti in prospettiva 3D</h4>
-      <p>Sulle pareti ci sono tre scritte: "Viva l'informatica!", "La A in Alom sta per aura" e "Aura di Musci +1000". Queste scritte rimpiccioliscono o ingrandiscono in tempo reale in base alla distanza, seguendo la prospettiva 3D, e sono posizionate matematicamente nella zona bianca della parete.</p>
+      <p>Sulle pareti ci sono tre scritte: "Viva l'informatica!", "Aura di Musci +1000" e "La A in Alom sta per aura". Queste scritte rimpiccioliscono o ingrandiscono in tempo reale in base alla distanza, seguendo la prospettiva 3D, e sono posizionate matematicamente nella zona bianca della parete.</p>
     </div>
     <div class="feature-card">
       <span class="icon">🔊</span>
       <h4>Audio misto: sintetizzato + file esterni</h4>
-      <p>I suoni base (sparo, danno, crash PC) vengono generati al volo calcolando onde matematiche. Ci sono però anche tre file MP3 reali: <em>attenzione.mp3</em> (Mattana che avvisa), <em>allarme.mp3</em> (PC sabotato) e <em>arrabiato.mp3</em> (urlo di Musci al suo ingresso).</p>
+      <p>I suoni base (sparo, danno, crash PC) vengono generati al volo calcolando onde matematiche. Ci sono però anche tre file MP3 reali: <em>attenzione.mp3</em> (avvisa l'arrivo di prof Mattana), <em>allarme.mp3</em> (PC sabotato) e <em>arrabiato.mp3</em> (Attenzione, prof Musci è arrabiato).</p>
     </div>
     <div class="feature-card">
       <span class="icon">🎓</span>
@@ -352,7 +352,7 @@
   <h4 style="color:var(--accent2); margin: 1.5rem 0 0.6rem;">Livello 2 — Boss Fight</h4>
   <ul class="rules-list">
     <li><span class="key">Arena</span> Mappa più piccola (12×6 celle) con pareti viola scuro sfumate in base alla distanza.</li>
-    <li><span class="key">Musci</span> Parte dalla posizione B nella mappa. Si avvicina per 2 secondi, poi urla "arrabiato" e inizia a sparare ogni 1.8 secondi. Se il giocatore si avvicina troppo (distanza &lt; 3.5 unità), il boss si allontana.</li>
+    <li><span class="key">Musci</span> Parte dalla posizione B nella mappa. Si avvicina per 2 secondi, parte l'audio "arrabiato" e inizia a sparare ogni 1.8 secondi. Se il giocatore si avvicina troppo (distanza &lt; 3.5 unità), il boss si allontana.</li>
     <li><span class="key">Aura di Musci</span> Il boss ha 100 punti Aura. Ogni colpo del giocatore toglie 10 Aura. La barra viola in cima allo schermo mostra quanto ne rimane.</li>
     <li><span class="key">Proiettili boss</span> Testi di sanzione scelti a caso tra "Brutto Voto", "Nota sul Registro", "Chiamare i genitori" e "C.d.C." — disegnati in giallo brillante sopra un cerchio viola per essere visibili nell'arena scura.</li>
   </ul>
@@ -432,7 +432,7 @@
   <p>Le funzioni di disegno fondamentali dentro la classe <code>Game</code> sono:</p>
   <ul class="rules-list">
     <li><span class="key">cast_rays</span> Proietta 180 raggi per coprire la visuale del giocatore, calcola la distanza e disegna strisce verticali di muro in 3D. Se <code>boss_mode</code> è attivo, colora i muri di viola scuro sfumato. Restituisce lo <code>zbuf</code> (distanze dei muri per ogni raggio).</li>
-    <li><span class="key">draw</span> Raccoglie tutti gli oggetti 3D in una lista <code>render_queue</code> con le loro distanze, li ordina dal più lontano al più vicino (Z-sorting) e li disegna in ordine di priorità: graffiti (+0.05 di offset, sempre dietro), poi PC, poi nemici (−0.05 di offset, sempre davanti). Poi disegna il HUD 2D sopra a tutto.</li>
+    <li><span class="key">draw</span> Raccoglie tutti gli oggetti 3D in una lista <code>render_queue</code> con le loro distanze, li ordina dal più lontano al più vicino (Z-sorting) e li disegna in ordine di priorità: graffiti (+0.05 di offset, sempre dietro), poi PC, poi nemici (-0.05 di offset, sempre davanti). Poi disegna il HUD 2D sopra a tutto.</li>
     <li><span class="key">draw_hud</span> Disegna la barra del Voto, il timer con i colori dinamici (nero → giallo a 20 sec → rosso a 10 sec), il contatore PC, la barra Aura del boss e il mirino rosso.</li>
   </ul>
 
@@ -481,48 +481,41 @@
 
   <h3>Schema a blocchi del rendering pipeline</h3>
   <div class="diagram-wrap">
-    <svg viewBox="0 0 820 290" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:820px; display:block; font-family:'Share Tech Mono', monospace;">
-      <defs>
-        <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.22)"/>
-        </marker>
-      </defs>
-      <!-- cast_rays -->
-      <rect x="10" y="100" width="148" height="90" rx="8" fill="rgba(176,106,255,0.12)" stroke="rgba(176,106,255,0.4)" stroke-width="1"/>
-      <text x="84" y="135" text-anchor="middle" font-size="11" fill="#c99fff">cast_rays()</text>
-      <text x="84" y="153" text-anchor="middle" font-size="9" fill="rgba(176,106,255,0.55)">180 raggi → strisce</text>
-      <text x="84" y="167" text-anchor="middle" font-size="9" fill="rgba(176,106,255,0.55)">muro bicolore / viola</text>
-      <line x1="158" y1="145" x2="210" y2="145" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arr)"/>
-      <!-- zbuf -->
-      <rect x="210" y="108" width="130" height="74" rx="8" fill="rgba(106,240,200,0.08)" stroke="rgba(106,240,200,0.28)" stroke-width="1"/>
-      <text x="275" y="138" text-anchor="middle" font-size="11" fill="#8af7d8">zbuf[ ]</text>
-      <text x="275" y="155" text-anchor="middle" font-size="9" fill="rgba(106,240,200,0.5)">distanza muro per</text>
-      <text x="275" y="168" text-anchor="middle" font-size="9" fill="rgba(106,240,200,0.5)">ogni raggio</text>
-      <line x1="340" y1="145" x2="390" y2="145" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arr)"/>
-      <!-- render_queue -->
-      <rect x="390" y="80" width="155" height="130" rx="8" fill="rgba(255,106,106,0.08)" stroke="rgba(255,106,106,0.28)" stroke-width="1"/>
-      <text x="467" y="113" text-anchor="middle" font-size="11" fill="#ff9999">render_queue</text>
-      <text x="467" y="130" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.5)">graffiti (dist+0.05)</text>
-      <text x="467" y="144" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.5)">PC (dist)</text>
-      <text x="467" y="158" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.5)">nemici (dist−0.05)</text>
-      <text x="467" y="172" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.5)">proiettili (dist)</text>
-      <text x="467" y="192" text-anchor="middle" font-size="8.5" fill="rgba(255,106,106,0.38)">↕ sort lontano → vicino</text>
-      <line x1="545" y1="145" x2="595" y2="145" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arr)"/>
-      <!-- draw objects -->
-      <rect x="595" y="96" width="148" height="58" rx="8" fill="rgba(176,106,255,0.08)" stroke="rgba(176,106,255,0.22)" stroke-width="1"/>
-      <text x="669" y="122" text-anchor="middle" font-size="11" fill="#c99fff">draw_world_sprite</text>
-      <text x="669" y="138" text-anchor="middle" font-size="9" fill="rgba(176,106,255,0.45)">clip con zbuf</text>
-      <!-- arrow down to hud -->
-      <rect x="595" y="168" width="148" height="52" rx="8" fill="rgba(106,240,200,0.06)" stroke="rgba(106,240,200,0.18)" stroke-width="1"/>
-      <text x="669" y="190" text-anchor="middle" font-size="11" fill="#8af7d8">draw_graffiti</text>
-      <text x="669" y="206" text-anchor="middle" font-size="9" fill="rgba(106,240,200,0.42)">testo in prospettiva</text>
-      <line x1="669" y1="220" x2="669" y2="250" stroke="rgba(255,255,255,0.18)" stroke-width="1" marker-end="url(#arr)"/>
-      <rect x="580" y="250" width="178" height="30" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <text x="669" y="270" text-anchor="middle" font-size="10" fill="rgba(232,232,240,0.55)">draw_hud · flash · shake · flip</text>
-      <text x="10" y="22" font-size="9.5" fill="rgba(255,255,255,0.18)">FRAME RENDERING PIPELINE — ogni fotogramma</text>
-      <line x1="10" y1="30" x2="760" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
-    </svg>
-  </div>
+   <svg viewBox="0 0 820 290" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:820px; display:block; font-family:'Share Tech Mono', monospace;">
+    <defs>
+      <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.22)"/>
+      </marker>
+    </defs>
+
+    <text x="10" y="22" font-size="9.5" fill="rgba(255,255,255,0.85)">FRAME RENDERING PIPELINE — ogni fotogramma</text>
+    <line x1="10" y1="30" x2="760" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+    <rect x="10" y="100" width="148" height="90" rx="8" fill="rgba(176,106,255,0.12)" stroke="rgba(176,106,255,0.4)" stroke-width="1"/>
+    <text x="84" y="135" text-anchor="middle" font-size="11" fill="#c99fff">cast_rays()</text>
+    <text x="84" y="153" text-anchor="middle" font-size="9" fill="rgba(176,106,255,0.55)">180 raggi → strisce</text>
+    <text x="84" y="167" text-anchor="middle" font-size="9" fill="rgba(176,106,255,0.55)">muro bicolore / viola</text>
+    <line x1="158" y1="145" x2="210" y2="145" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arr)"/>
+
+    <rect x="210" y="108" width="130" height="74" rx="8" fill="rgba(106,240,200,0.08)" stroke="rgba(106,240,200,0.28)" stroke-width="1"/>
+    <text x="275" y="138" text-anchor="middle" font-size="11" fill="#8af7d8">zbuf[ ]</text>
+    <text x="275" y="155" text-anchor="middle" font-size="9" fill="rgba(106,240,200,0.5)">distanza muro per</text>
+    <text x="275" y="168" text-anchor="middle" font-size="9" fill="rgba(106,240,200,0.5)">ogni raggio</text>
+    <line x1="340" y1="145" x2="390" y2="145" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arr)"/>
+
+    <rect x="390" y="80" width="155" height="130" rx="8" fill="rgba(255,106,106,0.08)" stroke="rgba(255,106,106,0.28)" stroke-width="1"/>
+    <text x="467" y="113" text-anchor="middle" font-size="11" fill="#ff9999">render_queue</text>
+    <text x="467" y="130" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.5)">graffiti (dist+0.05)</text>
+    <text x="467" y="144" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.5)">PC (dist)</text>
+    <text x="467" y="158" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.5)">nemici (dist−0.05)</text>
+    <text x="467" y="172" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.5)">proiettili (dist)</text>
+    <text x="467" y="192" text-anchor="middle" font-size="8.5" fill="rgba(255,106,106,0.38)">↕ sort lontano → vicino</text>
+    <line x1="545" y1="145" x2="595" y2="145" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arr)"/>
+
+    <rect x="595" y="96" width="148" height="58" rx="8" fill="rgba(176,106,255,0.08)" stroke="rgba(176,106,255,0.22)" stroke-width="1"/>
+    <text x="669" y="122" text-anchor="middle" font-size="11" fill="#c99fff">draw_world_sprite</text>
+    <text x="669" y="138" text-anchor="middle" font-size="9" fill="rgba(176,106,255,0.45)">clip con zbuf</text>
+    <line x1="669" y1="154" x2="669" y2="168" stroke="rgba(255,255,255,0.18)" stroke-width="1" marker-end="url(#arr)"/>
 
   <h3>Strutture dati principali</h3>
   <ul class="rules-list">
@@ -549,7 +542,7 @@
 
     <div class="tl-item">
       <div class="tl-date">24 / 05 / 2026 &nbsp;·&nbsp; ore 19:30 — Il cambio di idea</div>
-      <div class="tl-body">All'inizio stavo cercando di programmare il gioco RPG fantasy (<em>Dungeon of Aldric</em>) con 5 livelli su Cursor. Il file era diventato un labirinto di quasi 2000 righe, i token finivano subito e c'erano bug ovunque. Insieme all'AI ho deciso di buttare via le parti pesanti (statistiche, inventari, generazione procedurale) e di fare una parodia scolastica molto più leggera e divertente, riducendo tutto a 2 livelli fatti bene. Ho impostato la struttura base del file con le costanti, le classi vuote e il ciclo di gioco principale.</div>
+      <div class="tl-body">All'inizio stavo cercando di programmare il gioco RPG fantasy (<em>Dungeon of Aldric</em>) con 5 livelli su Cursor. Il file era diventato un labirinto di quasi 2000 righe, i token finivano subito e c'erano bug ovunque. Ho deciso di buttare via le parti pesanti (statistiche, inventari, generazione procedurale) e di fare una parodia scolastica molto più leggera e divertente, riducendo tutto a 2 livelli fatti bene. Ho impostato la struttura base del file con le costanti, le classi vuote e il ciclo di gioco principale.</div>
     </div>
 
     <div class="tl-item">
@@ -616,7 +609,7 @@
 
   <h3>4.2 Modalità di utilizzo dell'Intelligenza Artificiale</h3>
 
-  <p>Gli strumenti usati: <span class="badge badge-purple">Cursor</span> <span class="badge badge-teal">Claude (free)</span></p>
+  <p>Gli strumenti usati: <span class="badge badge-purple">Cursor</span> <span class="badge badge-teal">Claude</span> <span class="badge badge-blue">Gemini</span></p>
 
   <p>L'AI è stata fondamentale perché programmare un motore geometrico 3D a raggi da soli in terza superiore è quasi impossibile, soprattutto considerando che non avevo seguito bene le spiegazioni all'inizio. Ho usato l'AI per:</p>
 
@@ -759,11 +752,11 @@
 
   <p>Questo progetto mi ha insegnato tantissime cose su come funziona la programmazione con Pygame. Devo essere onesto: quando Lei ha detto alla classe che non ci sarebbero stati compiti o esami scritti tradizionali su questo argomento, non ho preso la cosa sul serio. Non ho fatto pratica e non ricordavo nemmeno le cose base. Dover fare questo videogioco mi ha costretto a mettermi sotto e a capire almeno i concetti fondamentali dei cicli, delle liste e del disegno delle forme.</p>
 
-  <p>Purtroppo devo ammettere che ho scritto quasi tutto il codice facendomi aiutare dall'AI, perché l'algoritmo matematico per fare il 3D da zero era troppo complicato per le mie capacità e andava oltre quello che riuscivo a fare da solo. Penso di aver usato l'AI un po' troppo e in modo troppo passivo all'inizio.</p>
+  <p>Purtroppo devo ammettere che ho scritto tutto il codice facendomi aiutare dall'AI, perché era troppo complicato per le mie capacità e andava oltre quello che riuscivo a fare da solo. Penso di aver usato l'AI un po' troppo e in modo troppo passivo all'inizio. In seguito, però, ho dovuto metterci del mio: ho usato la mia testa per scovare e risolvere i bug, guidando il processo con la mia logica. L'AI ha fatto il lavoro pesante, ma il pensiero dietro è stato interamente mio.</p>
 
   <p>La parte in cui ho imparato di più è stata la caccia ai bug. Ogni volta che l'AI aggiungeva una riga per fare una modifica, si rompeva qualcos'altro e saltava fuori un errore. Spiegare all'AI i difetti grafici con precisione millimetrica e chiara senza ottenere subito il risultato giusto è stato davvero frustrante. Però questo mi ha costretto a leggere il codice riga per riga per capire dove fosse l'errore. Alla fine, anche con i limiti di IDLE (che non è fatto per i giochi in 3D), sono riuscito a sistemare quasi tutto.</p>
 
-  <p>Se potessi tornare indietro e rifare il progetto da capo, organizzerei meglio il tempo e proverei a usare di più anche Gemini fin dall'inizio, invece di trovarmi a cambiare strumento a metà perché i token di Cursor erano finiti.</p>
+  <p>Se potessi tornare indietro e rifare il progetto da capo, organizzerei meglio il tempo e proverei a usare di più anche Gemini fin dall'inizio, invece di trovarmi a cambiare strumento a metà perché i token di Cursor/Claude erano finiti.</p>
 
   <div class="reflection-grid" style="margin-top: 1.5rem;">
     <div class="reflect-card">
@@ -772,11 +765,11 @@
     </div>
     <div class="reflect-card">
       <div class="q">Cosa è stato più difficile</div>
-      <p>Il debug dei graffiti sui muri. Spiegare il problema grafico all'AI in modo preciso, senza riuscire ad avere subito il risultato giusto, è stato quello che mi ha portato via più tempo in assoluto.</p>
+      <p>Il rendering 3D in un ambiente 2D. Far sembrare il gioco tridimensionale è stata la sfida più complessa, poiché la libreria nativa è pensata per il 2D; l'AI eccelle nel generare giochi bidimensionali, ma va in forte crisi con la logica del finto 3D.</p>
     </div>
     <div class="reflect-card">
       <div class="q">Una difficoltà superata</div>
-      <p>Il bug del pulsante RICOMINCIA che non rispondeva al click. Ho dovuto capire come funziona il sistema di coordinate di Pygame tra la superficie reale e quella del display, e aggiungere l'offset corretto per la posizione del <code>Rect</code>.</p>
+      <p>Il blocco del gioco al passaggio di livello. Il gioco crashava quando si passava al Livello 2 perché mancava la definizione corretta del colore delle pareti del boss. Ho risolto definendo la costante BOSS_WALL_COL = (80, 20, 60), modificando cast_rays() per applicare una sfumatura basata sulla distanza e inserendo il loop musicale del boss con SFX.play("boss_loop", 0.3, loops=-1).</p>
     </div>
     <div class="reflect-card">
       <div class="q">Se rifacessi il progetto</div>
