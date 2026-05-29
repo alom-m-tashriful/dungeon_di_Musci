@@ -22,11 +22,8 @@
     --mono: 'Share Tech Mono', monospace;
     --sans: 'Syne', sans-serif;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -35,18 +32,16 @@
     line-height: 1.75;
     min-height: 100vh;
   }
-
-  /* scanline overlay */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.07) 2px, rgba(0,0,0,0.07) 4px);
     pointer-events: none;
     z-index: 1000;
   }
 
-  /* ── HEADER ── */
+  /* HEADER */
   header {
     position: relative;
     padding: 5rem 2rem 4rem;
@@ -54,7 +49,6 @@
     border-bottom: 1px solid var(--border2);
     overflow: hidden;
   }
-
   header::before {
     content: '';
     position: absolute;
@@ -62,7 +56,6 @@
     background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(176,106,255,0.13) 0%, transparent 70%);
     pointer-events: none;
   }
-
   .game-title {
     font-size: clamp(2.8rem, 8vw, 6rem);
     font-weight: 800;
@@ -74,7 +67,6 @@
     background-clip: text;
     margin-bottom: 0.75rem;
   }
-
   .subtitle {
     font-family: var(--mono);
     font-size: 0.85rem;
@@ -83,10 +75,9 @@
     text-transform: uppercase;
     margin-bottom: 2.5rem;
   }
-
   .meta-grid {
     display: inline-grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 1px;
     border: 1px solid var(--border2);
     background: var(--border2);
@@ -95,620 +86,173 @@
     max-width: 700px;
     width: 100%;
   }
+  .meta-item { background: var(--surface); padding: 0.85rem 1.25rem; text-align: left; }
+  .meta-label { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.25rem; }
+  .meta-value { font-size: 0.95rem; font-weight: 600; color: var(--text); }
 
-  .meta-item {
-    background: var(--surface);
-    padding: 0.85rem 1.25rem;
-    text-align: left;
-  }
-
-  .meta-label {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.25rem;
-  }
-
-  .meta-value {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  /* ── NAV ── */
+  /* NAV */
   nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(10,10,15,0.9);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,15,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     padding: 0 2rem;
     overflow-x: auto;
   }
-
-  .nav-inner {
-    display: flex;
-    gap: 0;
-    max-width: 900px;
-    margin: 0 auto;
-    white-space: nowrap;
-  }
-
+  .nav-inner { display: flex; gap: 0; max-width: 960px; margin: 0 auto; white-space: nowrap; }
   nav a {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    padding: 1rem 1.1rem;
-    border-bottom: 2px solid transparent;
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted); text-decoration: none;
+    padding: 0.9rem 1rem; border-bottom: 2px solid transparent;
     transition: color 0.2s, border-color 0.2s;
   }
+  nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
-  nav a:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
-
-  /* ── MAIN LAYOUT ── */
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 2rem 6rem;
-  }
-
-  /* ── SECTIONS ── */
-  section {
-    padding-top: 5rem;
-    padding-bottom: 1rem;
-  }
-
+  /* MAIN */
+  main { max-width: 960px; margin: 0 auto; padding: 0 2rem 6rem; }
+  section { padding-top: 4.5rem; padding-bottom: 0.5rem; }
   .section-tag {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.6rem;
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
   }
+  h2 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1.5rem; color: var(--text); }
+  h3 { font-size: 1.05rem; font-weight: 700; color: var(--accent2); margin: 2rem 0 0.75rem; }
+  h4 { font-size: 0.92rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+  p { color: rgba(232,232,240,0.85); margin-bottom: 1rem; }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border2) 20%, var(--border2) 80%, transparent); margin: 1rem 0 0; }
 
-  h2 {
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    margin-bottom: 2rem;
-    color: var(--text);
-  }
+  /* BOXES */
+  .box { background: var(--surface2); border: 1px solid var(--border2); border-radius: 12px; padding: 1.4rem; margin: 1.25rem 0; }
+  .box-accent { border-color: rgba(176,106,255,0.3); background: rgba(176,106,255,0.05); }
+  .box-teal   { border-color: rgba(106,240,200,0.3); background: rgba(106,240,200,0.05); }
+  .box-red    { border-color: rgba(255,106,106,0.3); background: rgba(255,106,106,0.05); }
 
-  h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--accent2);
-    margin: 2rem 0 0.75rem;
-    letter-spacing: 0.01em;
-  }
-
-  p {
-    color: rgba(232,232,240,0.85);
-    margin-bottom: 1rem;
-  }
-
-  /* ── DIVIDER ── */
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border2) 20%, var(--border2) 80%, transparent);
-    margin: 0;
-  }
-
-  /* ── HIGHLIGHT BOX ── */
-  .box {
-    background: var(--surface2);
-    border: 1px solid var(--border2);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-  }
-
-  .box-accent {
-    border-color: rgba(176,106,255,0.3);
-    background: rgba(176,106,255,0.05);
-  }
-
-  .box-teal {
-    border-color: rgba(106,240,200,0.3);
-    background: rgba(106,240,200,0.05);
-  }
-
-  .box-red {
-    border-color: rgba(255,106,106,0.3);
-    background: rgba(255,106,106,0.05);
-  }
-
-  /* ── BADGE ── */
-  .badge {
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-right: 6px;
-    margin-bottom: 4px;
-  }
-
+  /* BADGES */
+  .badge { display: inline-block; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-right: 6px; margin-bottom: 4px; }
   .badge-purple { background: rgba(176,106,255,0.15); color: #c99fff; border: 1px solid rgba(176,106,255,0.3); }
   .badge-teal   { background: rgba(106,240,200,0.12); color: #8af7d8; border: 1px solid rgba(106,240,200,0.25); }
   .badge-red    { background: rgba(255,106,106,0.12); color: #ff9999; border: 1px solid rgba(255,106,106,0.25); }
 
-  /* ── ORIGINALITY CARDS ── */
-  .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem;
-    margin: 1.5rem 0;
-  }
+  /* FEATURE CARDS */
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+  .feature-card { background: var(--surface); border: 1px solid var(--border2); border-radius: 12px; padding: 1.2rem; }
+  .feature-card .icon { font-size: 1.5rem; margin-bottom: 0.6rem; display: block; }
+  .feature-card p { font-size: 0.82rem; color: var(--muted); margin: 0; line-height: 1.6; }
 
-  .feature-card {
-    background: var(--surface);
-    border: 1px solid var(--border2);
-    border-radius: 12px;
-    padding: 1.25rem;
-  }
-
-  .feature-card .icon {
-    font-size: 1.6rem;
-    margin-bottom: 0.75rem;
-    display: block;
-  }
-
-  .feature-card h4 {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 0.4rem;
-  }
-
-  .feature-card p {
-    font-size: 0.82rem;
-    color: var(--muted);
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  /* ── RULES LIST ── */
-  .rules-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    margin: 1rem 0 1.5rem;
-  }
-
+  /* RULES LIST */
+  .rules-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin: 0.75rem 0 1.25rem; }
   .rules-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    font-size: 0.9rem;
-    color: rgba(232,232,240,0.82);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.65rem 1rem;
-    line-height: 1.5;
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 0.88rem; color: rgba(232,232,240,0.82);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.6rem 1rem; line-height: 1.55;
   }
-
   .rules-list li .key {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    background: rgba(176,106,255,0.15);
-    color: #c99fff;
-    border: 1px solid rgba(176,106,255,0.25);
-    border-radius: 5px;
-    padding: 1px 7px;
-    flex-shrink: 0;
-    margin-top: 2px;
+    font-family: var(--mono); font-size: 0.67rem;
+    background: rgba(176,106,255,0.15); color: #c99fff;
+    border: 1px solid rgba(176,106,255,0.25); border-radius: 5px;
+    padding: 1px 7px; flex-shrink: 0; margin-top: 2px;
   }
 
-  /* ── CODE BLOCK ── */
+  /* CODE BLOCK */
   pre {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    background: #0d0d14;
-    border: 1px solid var(--border2);
-    border-radius: 10px;
-    padding: 1.25rem 1.5rem;
-    overflow-x: auto;
-    margin: 1rem 0 1.5rem;
-    line-height: 1.7;
-    color: #ccd0e0;
+    font-family: var(--mono); font-size: 0.78rem;
+    background: #0d0d14; border: 1px solid var(--border2); border-radius: 10px;
+    padding: 1.25rem 1.5rem; overflow-x: auto; margin: 0.75rem 0 1.25rem;
+    line-height: 1.75; color: #ccd0e0;
   }
-
   pre .kw  { color: #b06aff; }
   pre .fn  { color: #6af0c8; }
   pre .cm  { color: #4a4a70; font-style: italic; }
   pre .str { color: #ffb86c; }
   pre .nb  { color: #ff6a6a; }
 
-  /* ── ARCHITECTURE BLOCKS ── */
-  .arch-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin: 1rem 0 1.5rem;
-    counter-reset: arch;
-  }
+  /* ARCH LIST */
+  .arch-list { display: flex; flex-direction: column; gap: 0.5rem; margin: 0.75rem 0 1.25rem; counter-reset: arch; }
+  .arch-item { counter-increment: arch; display: grid; grid-template-columns: 2rem 1fr; gap: 0.75rem; align-items: start; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.85rem 1rem; }
+  .arch-item::before { content: counter(arch); font-family: var(--mono); font-size: 0.7rem; color: var(--accent); background: rgba(176,106,255,0.12); border: 1px solid rgba(176,106,255,0.2); border-radius: 6px; display: flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; flex-shrink: 0; margin-top: 2px; }
+  .arch-item strong { font-size: 0.9rem; font-weight: 700; color: var(--text); display: block; margin-bottom: 0.2rem; }
+  .arch-item p { font-size: 0.82rem; color: var(--muted); margin: 0; line-height: 1.55; }
 
-  .arch-item {
-    counter-increment: arch;
-    display: grid;
-    grid-template-columns: 2rem 1fr;
-    gap: 0.75rem;
-    align-items: start;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 0.85rem 1rem;
-  }
+  /* DIAGRAM WRAP */
+  .diagram-wrap { background: var(--surface); border: 1px solid var(--border2); border-radius: 14px; padding: 1.5rem; margin: 1.25rem 0; overflow-x: auto; }
 
-  .arch-item::before {
-    content: counter(arch);
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--accent);
-    background: rgba(176,106,255,0.12);
-    border: 1px solid rgba(176,106,255,0.2);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 2.5rem; margin: 1.25rem 0; }
+  .timeline::before { content: ''; position: absolute; left: 0.65rem; top: 0.5rem; bottom: 0.5rem; width: 1px; background: linear-gradient(180deg, var(--accent), var(--accent2)); }
+  .tl-item { position: relative; margin-bottom: 1.6rem; }
+  .tl-item::before { content: ''; position: absolute; left: -2.5rem; top: 0.55rem; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+  .tl-date { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; color: var(--accent2); margin-bottom: 0.25rem; }
+  .tl-title { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.35rem; }
+  .tl-body { font-size: 0.86rem; color: rgba(232,232,240,0.75); line-height: 1.65; }
+  .tl-body code { font-family: var(--mono); font-size: 0.78rem; color: #c99fff; background: rgba(176,106,255,0.1); padding: 1px 5px; border-radius: 4px; }
 
-  .arch-item strong {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--text);
-    display: block;
-    margin-bottom: 0.2rem;
-  }
-
-  .arch-item p {
-    font-size: 0.82rem;
-    color: var(--muted);
-    margin: 0;
-    line-height: 1.55;
-  }
-
-  /* ── FLOWCHART SVG wrapper ── */
-  .diagram-wrap {
-    background: var(--surface);
-    border: 1px solid var(--border2);
-    border-radius: 14px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    overflow-x: auto;
-  }
-
-  /* ── TIMELINE (diary) ── */
-  .timeline {
-    position: relative;
-    padding-left: 2.5rem;
-    margin: 1.5rem 0;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0.65rem;
-    top: 0.5rem;
-    bottom: 0.5rem;
-    width: 1px;
-    background: linear-gradient(180deg, var(--accent), var(--accent2));
-  }
-
-  .tl-item {
-    position: relative;
-    margin-bottom: 1.75rem;
-  }
-
-  .tl-item::before {
-    content: '';
-    position: absolute;
-    left: -2.5rem;
-    top: 0.5rem;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--accent);
-    border: 2px solid var(--bg);
-  }
-
-  .tl-date {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    color: var(--accent2);
-    margin-bottom: 0.3rem;
-  }
-
-  .tl-title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 0.4rem;
-  }
-
-  .tl-body {
-    font-size: 0.85rem;
-    color: rgba(232,232,240,0.75);
-    line-height: 1.6;
-  }
-
-  /* ── AI USAGE ── */
-  .ai-item {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.25rem;
-    align-items: flex-start;
-  }
-
-  .ai-num {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--accent);
-    background: rgba(176,106,255,0.1);
-    border: 1px solid rgba(176,106,255,0.2);
-    border-radius: 6px;
-    width: 1.8rem;
-    height: 1.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
+  /* AI SECTION */
+  .ai-item { display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: flex-start; }
+  .ai-num { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); background: rgba(176,106,255,0.1); border: 1px solid rgba(176,106,255,0.2); border-radius: 6px; width: 1.8rem; height: 1.8rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
   .ai-item p { font-size: 0.88rem; color: rgba(232,232,240,0.82); margin: 0; }
+  .prompt-block { font-family: var(--mono); font-size: 0.76rem; background: #0a0a14; border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 0.75rem 1rem; color: #c0c0e0; margin: 0.5rem 0; line-height: 1.65; }
 
-  .prompt-block {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    background: #0a0a14;
-    border-left: 3px solid var(--accent);
-    border-radius: 0 8px 8px 0;
-    padding: 0.75rem 1rem;
-    color: #c0c0e0;
-    margin: 0.5rem 0;
-    line-height: 1.6;
-  }
-
-  /* ── TEST TABLE ── */
-  .test-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.83rem;
-    margin: 1rem 0 1.5rem;
-  }
-
-  .test-table th {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: left;
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid var(--border2);
-  }
-
-  .test-table td {
-    padding: 0.7rem 1rem;
-    border-bottom: 1px solid var(--border);
-    color: rgba(232,232,240,0.8);
-    vertical-align: top;
-    line-height: 1.5;
-  }
-
+  /* TEST TABLE */
+  .test-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin: 1rem 0 1.25rem; }
+  .test-table th { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 0.5rem 0.9rem; border-bottom: 1px solid var(--border2); }
+  .test-table td { padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--border); color: rgba(232,232,240,0.8); vertical-align: top; line-height: 1.5; }
   .test-table tr:last-child td { border-bottom: none; }
-
   .test-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .pass    { font-family: var(--mono); font-size: 0.64rem; font-weight: 700; color: #8af7d8; background: rgba(106,240,200,0.1); border: 1px solid rgba(106,240,200,0.2); border-radius: 4px; padding: 2px 8px; white-space: nowrap; }
+  .partial { font-family: var(--mono); font-size: 0.64rem; font-weight: 700; color: #ffca80; background: rgba(255,180,0,0.1); border: 1px solid rgba(255,180,0,0.2); border-radius: 4px; padding: 2px 8px; white-space: nowrap; }
 
-  .pass {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: #8af7d8;
-    background: rgba(106,240,200,0.1);
-    border: 1px solid rgba(106,240,200,0.2);
-    border-radius: 4px;
-    padding: 2px 8px;
-    white-space: nowrap;
-  }
+  /* SCREENSHOTS */
+  .screenshot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+  .screenshot-item { background: var(--surface2); border: 1px solid var(--border2); border-radius: 10px; overflow: hidden; }
+  .screenshot-item img { width: 100%; height: 140px; object-fit: cover; display: block; }
+  .ss-label { font-family: var(--mono); font-size: 0.63rem; color: var(--muted); padding: 0.5rem 0.75rem; letter-spacing: 0.06em; }
 
-  .fail {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: #ff9999;
-    background: rgba(255,106,106,0.1);
-    border: 1px solid rgba(255,106,106,0.2);
-    border-radius: 4px;
-    padding: 2px 8px;
-  }
-
-  .partial {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: #ffca80;
-    background: rgba(255,180,0,0.1);
-    border: 1px solid rgba(255,180,0,0.2);
-    border-radius: 4px;
-    padding: 2px 8px;
-  }
-
-  /* ── SCREENSHOT GRID ── */
-  .screenshot-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-    margin: 1.5rem 0;
-  }
-
-  .screenshot-item {
-    background: var(--surface2);
-    border: 1px solid var(--border2);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  .screenshot-item img {
-    width: 100%;
-    height: 130px;
-    object-fit: cover;
-    display: block;
-    background: #111;
-  }
-
-  .screenshot-item .ss-label {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--muted);
-    padding: 0.5rem 0.75rem;
-    letter-spacing: 0.06em;
-  }
-
-  .screenshot-placeholder {
-    width: 100%;
-    height: 130px;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 0.1em;
-  }
-
-  /* ── DOWNLOAD BUTTON ── */
+  /* DOWNLOAD */
   .download-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    background: rgba(106,240,200,0.08);
-    border: 1px solid rgba(106,240,200,0.25);
-    border-radius: 8px;
-    padding: 0.65rem 1.25rem;
-    text-decoration: none;
-    transition: background 0.2s, border-color 0.2s;
-    margin-top: 1rem;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent2); background: rgba(106,240,200,0.08); border: 1px solid rgba(106,240,200,0.25);
+    border-radius: 8px; padding: 0.7rem 1.4rem; text-decoration: none;
+    transition: background 0.2s, border-color 0.2s; margin-top: 1rem; display: inline-flex;
   }
+  .download-btn:hover { background: rgba(106,240,200,0.15); border-color: rgba(106,240,200,0.45); }
+  .download-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-  .download-btn:hover {
-    background: rgba(106,240,200,0.15);
-    border-color: rgba(106,240,200,0.4);
-  }
+  /* REFLECTION */
+  .reflection-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+  .reflect-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+  .reflect-card .q { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+  .reflect-card p { font-size: 0.86rem; color: rgba(232,232,240,0.78); margin: 0; line-height: 1.65; }
 
-  .download-btn svg {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-  }
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; }
 
-  /* ── CONCLUSION QUOTE ── */
-  .reflection-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    margin: 1.5rem 0;
-  }
-
-  .reflect-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.25rem;
-  }
-
-  .reflect-card .q {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.5rem;
-  }
-
-  .reflect-card p {
-    font-size: 0.85rem;
-    color: rgba(232,232,240,0.78);
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem;
-    text-align: center;
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-  }
-
-  /* ── RESPONSIVE ── */
+  /* RESPONSIVE */
   @media (max-width: 600px) {
     header { padding: 3.5rem 1.25rem 3rem; }
     main { padding: 0 1.25rem 4rem; }
     nav { padding: 0 1.25rem; }
     .meta-grid { grid-template-columns: 1fr 1fr; }
-    h2 { font-size: 1.5rem; }
+    h2 { font-size: 1.4rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════ HEADER -->
+<!-- HEADER -->
 <header>
   <div class="game-title">Dungeon di Musci</div>
   <p class="subtitle">Relazione di Laboratorio &nbsp;·&nbsp; Mini Progetto Python / Pygame</p>
   <div class="meta-grid">
-    <div class="meta-item">
-      <div class="meta-label">Studente</div>
-      <div class="meta-value">M Tashriful Alom</div>
-    </div>
-    <div class="meta-item">
-      <div class="meta-label">Classe</div>
-      <div class="meta-value">3 BTLC</div>
-    </div>
-    <div class="meta-item">
-      <div class="meta-label">Consegna</div>
-      <div class="meta-value">29 / 05 / 2026</div>
-    </div>
-    <div class="meta-item">
-      <div class="meta-label">Piattaforma</div>
-      <div class="meta-value">Python + Pygame</div>
-    </div>
+    <div class="meta-item"><div class="meta-label">Studente</div><div class="meta-value">M Tashriful Alom</div></div>
+    <div class="meta-item"><div class="meta-label">Classe</div><div class="meta-value">3 BTLC</div></div>
+    <div class="meta-item"><div class="meta-label">Titolo del gioco</div><div class="meta-value">Dungeon di Musci</div></div>
+    <div class="meta-item"><div class="meta-label">Consegna</div><div class="meta-value">29 / 05 / 2026</div></div>
   </div>
 </header>
 
-<!-- ═══════════════════════════════════════════════════════ NAV -->
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <a href="#idea">Idea</a>
@@ -721,446 +265,486 @@
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════════ MAIN -->
+<!-- MAIN -->
 <main>
 
-<!-- ─────────────────────────────────────── 2. IDEA DEL GIOCO -->
+<!-- ─── 2. IDEA DEL GIOCO ─── -->
 <section id="idea">
   <div class="section-tag">02 — Idea del Gioco</div>
-  <h2>Di cosa parla il gioco?</h2>
+  <h2>Idea del gioco</h2>
 
-  <p>
-    <em>Dungeon di Musci</em> è uno sparatutto in prima persona 3D sviluppato in Python con Pygame,
-    basato sulla tecnica del <strong>raycasting</strong> (la stessa dei vecchi giochi anni '90 come Wolfenstein 3D).
-    È una parodia della nostra scuola: niente draghi o fantasy, i "mostri" sono i professori.
-  </p>
+  <p>Il gioco si intitola <em>Dungeon di Musci</em> ed è uno sparatutto in prima persona in 3D basato sulla tecnica del raycasting, sviluppato in Python con la libreria Pygame.</p>
+
+  <p>Se dovessi spiegarlo a un amico, gli direi che all'inizio volevo fare una cosa gigante: un gioco fantasy super complicato chiamato <em>Dungeon of Aldric</em>, con 5 livelli generati a caso, un inventario pieno di oggetti, statistiche da gioco di ruolo, chiavi, porte e una barra della sanità mentale. Ho provato a programmare la cosa più complessa possibile dentro IDLE, ma è stato un disastro. Il codice era diventato lunghissimo, c'erano così tanti bug che non sapevo più dove mettere le mani e il gioco rallentava tantissimo.</p>
+
+  <p>Alla fine ho deciso di cambiare strada e di trasformare il gioco in qualcosa di più semplice da gestire, ma decisamente più unico e divertente: una parodia della nostra scuola! Nel gioco finale ci sono solo 2 livelli fatti a mano.</p>
 
   <div class="box box-accent">
-    <p style="margin:0; font-size:0.9rem; color: rgba(232,232,240,0.9);">
-      <strong style="color: var(--accent);">Obiettivo del giocatore:</strong>
-      il protagonista non vuole fare i compiti. Entra a scuola, manda in crash i 2 PC del laboratorio
-      entro 90 secondi (Livello 1), poi sopravvive alla boss fight finale contro il Prof. Musci (Livello 2).
-      Se la vita scende a zero o il tempo scade: <strong style="color: var(--accent3);">BOCCIATO!</strong>
-    </p>
+    <h4 style="color: var(--accent); margin-bottom: 0.75rem;">Obiettivo del giocatore</h4>
+    <p style="margin-bottom: 0.75rem; font-size: 0.9rem;">La storia è questa: il protagonista non ha nessuna voglia di fare i compiti. Per salvarsi, deve entrare a scuola e mandare in crash i <strong>3 PC del laboratorio</strong> entro un tempo limite di <strong>90 secondi</strong>. I PC si trovano in posizioni casuali nella mappa ogni volta che si ricomincia. Mentre cerca i computer, viene inseguito e preso a colpi dalla "Prof. Mattana" che pattuglia la classe — lei spara se è abbastanza vicina (tra 2 e 3 unità di distanza), e avvisa il giocatore con un audio di "attenzione" già da 5.4 unità di distanza, cioè esattamente 3 secondi prima di iniziare a sparare.</p>
+    <p style="margin-bottom: 0.75rem; font-size: 0.9rem;">Se riesce a sabotare tutti e 3 i PC, parte una scena di testo (scritta lettera per lettera sullo schermo) dove viene beccato e spedito direttamente al Livello 2: la Boss Fight finale contro il Professor Musci in persona dentro un'arena scura con le pareti viola scuro. Il giocatore ha a disposizione un'arma per difendersi.</p>
+    <p style="margin-bottom: 0; font-size: 0.9rem;">La metrica di salute del giocatore non è i classici HP ma un <strong>"Voto"</strong> che parte da 10: ogni colpo ricevuto toglie 1 punto Voto. Se il Voto arriva a 0, appare la schermata <strong style="color: var(--accent3);">BOCCIATO!</strong>. Il boss invece ha una metrica di <strong>"Aura"</strong> che parte da 100 e scende di 10 a ogni colpo: vince chi porta l'Aura di Musci a zero.</p>
   </div>
 
   <h3>Elementi di originalità</h3>
 
+  <p>Questo gioco è speciale perché non si trova da nessuna parte online un tutorial per fare una parodia scolastica del genere. Invece dei soliti mostri fantasy o dei cloni di Pacman, i nemici sono i nostri professori. Dal punto di vista tecnico ci sono poi cose molto avanzate che ho dovuto imparare quasi da zero:</p>
+
   <div class="feature-grid">
     <div class="feature-card">
-      <span class="icon">🎮</span>
-      <h4>Parodia scolastica</h4>
-      <p>I nemici sono la Prof. Mattana (Livello 1) e il Prof. Musci (boss finale). Le "armi" del boss sono sanzioni reali: "Nota sul Registro", "Chiamare i genitori", "C.d.C."</p>
-    </div>
-    <div class="feature-card">
       <span class="icon">📐</span>
-      <h4>Motore 3D da zero</h4>
-      <p>Nessun pacchetto 3D pronto: la grafica in prima persona è calcolata a mano con seni, coseni e proiezioni di raggi geometrici.</p>
+      <h4>Motore 3D fatto da zero</h4>
+      <p>La grafica in prima persona non usa pacchetti pronti. Proietta 180 raggi matematici (raycasting), come nei vecchi giochi anni '90 stile <em>Wolfenstein 3D</em>. Le pareti della scuola hanno persino un effetto bicolore: bianco in alto e verde scolastico (#52b69a) in basso, come le vere pareti della nostra aula.</p>
     </div>
     <div class="feature-card">
       <span class="icon">✍️</span>
-      <h4>Graffiti in prospettiva</h4>
-      <p>Testi sui muri ("Viva l'informatica!", "Aura di Musci +1000") che cambiano dimensione in base alla distanza, seguendo la prospettiva 3D.</p>
+      <h4>Graffiti in prospettiva 3D</h4>
+      <p>Sulle pareti ci sono tre scritte: "Viva l'informatica!", "La A in Alom sta per aura" e "Aura di Musci +1000". Queste scritte rimpiccioliscono o ingrandiscono in tempo reale in base alla distanza, seguendo la prospettiva 3D, e sono posizionate matematicamente nella zona bianca della parete.</p>
     </div>
     <div class="feature-card">
       <span class="icon">🔊</span>
-      <h4>Audio generato dal codice</h4>
-      <p>Zero file .mp3 o .wav: tutti i suoni (sparo, danno, crash PC) vengono creati generando onde matematiche direttamente nel programma.</p>
+      <h4>Audio misto: sintetizzato + file esterni</h4>
+      <p>I suoni base (sparo, danno, crash PC) vengono generati al volo calcolando onde matematiche. Ci sono però anche tre file MP3 reali: <em>attenzione.mp3</em> (Mattana che avvisa), <em>allarme.mp3</em> (PC sabotato) e <em>arrabiato.mp3</em> (urlo di Musci al suo ingresso).</p>
     </div>
-  </div>
-
-  <div class="box" style="margin-top:1rem;">
-    <p style="margin:0; font-size:0.85rem; color: var(--muted);">
-      <strong style="color: var(--text);">Pubblico ideale:</strong>
-      i compagni di classe 3 BTLC, che riconosceranno immediatamente i personaggi e le situazioni della parodia.
-    </p>
+    <div class="feature-card">
+      <span class="icon">🎓</span>
+      <h4>Tema scolastico integrato nel gameplay</h4>
+      <p>Non è solo grafico: il sistema di salute si chiama "Voto", la salute del boss si chiama "Aura", e i proiettili nemici sono testi reali come "Brutto Voto", "Nota sul Registro", "Chiamare i genitori" e "C.d.C." — cose che capitano davvero.</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">⚡</span>
+      <h4>Effetti visivi dinamici</h4>
+      <p>Quando si viene colpiti lo schermo fa un flash rosso e trema (screen shake). La scena di transizione tra i livelli fa un flash bianco. La schermata di vittoria cambia colore in tempo reale con una funzione seno. Il timer cambia colore: nero → giallo (≤20 sec) → rosso lampeggiante (≤10 sec).</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">🤖</span>
+      <h4>IA sincrona con l'audio</h4>
+      <p>Mattana è calibrata matematicamente: la sua velocità (0.8 unità/sec) e la soglia di fuoco (distanza 2–3) fanno sì che l'audio "attenzione" parta esattamente 3 secondi prima che inizi a sparare. Musci invece aspetta 2 secondi, urla "arrabiato" e solo poi apre il fuoco.</p>
+    </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ─────────────────────────────────────── 3. ANALISI -->
+<!-- ─── 3. ANALISI ─── -->
 <section id="analisi">
   <div class="section-tag">03 — Analisi e Progettazione</div>
-  <h2>Regole del gioco</h2>
+  <h2>Analisi e progettazione</h2>
 
-  <h3>Controlli</h3>
+  <h3>3.1 Regole del gioco</h3>
+
+  <p><strong>Movimento:</strong> Il giocatore si muove in prima persona usando i tasti <strong>W, A, S, D</strong> (o le frecce) per camminare e muove lo sguardo con il mouse o con le frecce destra/sinistra. I movimenti sono fluidi ed è stato inserito lo scivolamento sui muri (il codice controlla separatamente l'asse X e l'asse Y) per non incastrarsi.</p>
+
+  <p><strong>Sistema Voto (salute del giocatore):</strong> Il giocatore parte con <strong>10 Voto</strong>. Ogni volta che un proiettile nemico lo colpisce, perde 1 punto Voto e lo schermo fa un flash rosso più uno screen shake. Se il Voto arriva a 0 viene chiamata la funzione <code>start_game_over()</code> che suona tre note calanti e mostra la schermata BOCCIATO.</p>
+
+  <h4 style="color:var(--accent2); margin: 1.5rem 0 0.6rem;">Livello 1 — La Classe</h4>
   <ul class="rules-list">
-    <li><span class="key">W A S D</span> Movimento in prima persona (avanti, sinistra, indietro, destra)</li>
-    <li><span class="key">Mouse</span> Rotazione della visuale</li>
-    <li><span class="key">F</span> Sparare / interagire con i PC</li>
-    <li><span class="key">R</span> Riavviare il gioco dalla schermata finale</li>
+    <li><span class="key">Timer</span> 90 secondi che scorrono. Allo scadere: Game Over immediato.</li>
+    <li><span class="key">3 PC</span> Le posizioni sono scelte casualmente a ogni partita. Bisogna avvicinarsi (distanza &lt; 1.0 unità) e premere <strong>F</strong>. Il PC cambia immagine (da normale a schermata blu) e il contatore sale.</li>
+    <li><span class="key">Mattana</span> Appare da un punto casuale ad almeno 5.0 unità di distanza dal giocatore. Ha 2 HP, si muove verso il giocatore, e spara quando è a 2–3 unità di distanza con un cooldown di 2 secondi. Avvisa con l'audio "attenzione" da 5.4 unità di distanza (3 secondi prima di iniziare a sparare). Ci sono 10 ondate totali: ogni volta che Mattana viene sconfitta, ne arriva subito un'altra da un punto casuale.</li>
+    <li><span class="key">Proiettili</span> I proiettili del giocatore viaggiano a 7.0 unità/sec e hanno una hitbox di 0.4 unità. Colpire Mattana la abbatte dopo 2 colpi. I proiettili nemici viaggiano a 3.5 unità/sec.</li>
   </ul>
 
-  <h3>Livello 1 — La Classe</h3>
-  <ul class="rules-list">
-    <li><span class="key">90 sec</span> Timer che scorre. Allo scadere: Game Over</li>
-    <li><span class="key">2 PC</span> Da sabotare avvicinandosi e premendo <strong>F</strong> → schermata BSOD</li>
-    <li><span class="key">Mattana</span> Nemica con 2 HP — 3 ondate successive, rinasce da punto casuale</li>
-    <li><span class="key">−10 HP</span> Ogni proiettile nemico riduce la vita del 10%, con flash rosso sullo schermo</li>
-  </ul>
-
-  <h3>Transizione</h3>
   <div class="box box-teal" style="margin: 0.75rem 0 1.5rem;">
-    <p style="margin:0; font-size:0.88rem;">Dopo il secondo PC crashato appare una scena di testo (la convocazione dal Musci), i movimenti si bloccano e si entra nel Livello 2.</p>
+    <p style="margin:0; font-size:0.88rem;"><strong style="color:var(--accent2);">Transizione:</strong> Dopo il terzo PC, il gioco cambia stato in <em>end_cutscene</em>: i movimenti si bloccano, appare una finestra di testo (scritta lettera per lettera a 45 caratteri/secondo) con 3 messaggi. Poi parte un flash bianco da 1.5 secondi e si entra nel Livello 2.</p>
   </div>
 
-  <h3>Livello 2 — Boss Fight</h3>
+  <h4 style="color:var(--accent2); margin: 1.5rem 0 0.6rem;">Livello 2 — Boss Fight</h4>
   <ul class="rules-list">
-    <li><span class="key">Musci</span> Boss con 10 HP — si avvicina se lontano, scappa se troppo vicino</li>
-    <li><span class="key">Proiettili</span> Lancia testi di sanzione ogni 2 secondi ("Brutto Voto", "Nota sul Registro", "C.d.C."…)</li>
-    <li><span class="key">10 colpi</span> Per sconfiggere il boss → vittoria</li>
+    <li><span class="key">Arena</span> Mappa più piccola (12×6 celle) con pareti viola scuro sfumate in base alla distanza.</li>
+    <li><span class="key">Musci</span> Parte dalla posizione B nella mappa. Si avvicina per 2 secondi, poi urla "arrabiato" e inizia a sparare ogni 1.8 secondi. Se il giocatore si avvicina troppo (distanza &lt; 3.5 unità), il boss si allontana.</li>
+    <li><span class="key">Aura di Musci</span> Il boss ha 100 punti Aura. Ogni colpo del giocatore toglie 10 Aura. La barra viola in cima allo schermo mostra quanto ne rimane.</li>
+    <li><span class="key">Proiettili boss</span> Testi di sanzione scelti a caso tra "Brutto Voto", "Nota sul Registro", "Chiamare i genitori" e "C.d.C." — disegnati in giallo brillante sopra un cerchio viola per essere visibili nell'arena scura.</li>
   </ul>
 
-  <h3>Condizioni di fine partita</h3>
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0 1.5rem;">
+  <h4 style="color:var(--accent2); margin: 1.5rem 0 0.6rem;">Condizioni di fine partita</h4>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.75rem 0 1.5rem;">
     <div class="box box-red" style="margin:0; text-align:center;">
-      <p style="font-size:1.4rem; margin-bottom:0.4rem;">💀</p>
+      <p style="font-size:1.3rem; margin-bottom:0.4rem;">💀</p>
       <strong style="color: var(--accent3);">BOCCIATO!</strong>
-      <p style="font-size:0.8rem; margin:0.3rem 0 0; color:var(--muted);">HP Giocatore = 0 oppure timer scaduto</p>
+      <p style="font-size:0.8rem; margin:0.3rem 0 0; color:var(--muted);">Voto = 0 oppure timer scaduto</p>
+      <p style="font-size:0.75rem; margin:0.2rem 0 0; color:var(--muted);">"Debito Totale in Informatica"</p>
     </div>
     <div class="box box-teal" style="margin:0; text-align:center;">
-      <p style="font-size:1.4rem; margin-bottom:0.4rem;">🎉</p>
+      <p style="font-size:1.3rem; margin-bottom:0.4rem;">🎉</p>
       <strong style="color: var(--accent2);">MISSIONE COMPIUTA!</strong>
-      <p style="font-size:0.8rem; margin:0.3rem 0 0; color:var(--muted);">HP Musci = 0 → si gode</p>
+      <p style="font-size:0.8rem; margin:0.3rem 0 0; color:var(--muted);">Aura di Musci = 0</p>
+      <p style="font-size:0.75rem; margin:0.2rem 0 0; color:var(--muted);">"SI GODE! Niente compiti oggi!"</p>
     </div>
   </div>
+  <p>In entrambe le schermate finali basta premere il tasto <strong>R</strong> oppure cliccare il pulsante verde "RICOMINCIA" per azzerare tutto e ricominciare dal primo livello. (Il bug del click sul pulsante è stato uno degli ultimi fix — lo spiego nel diario di bordo.)</p>
 </section>
 
 <div class="divider"></div>
 
-<!-- ─────────────────────────────────────── 3.2 STRUTTURA -->
+<!-- ─── 3.2 STRUTTURA ─── -->
 <section id="struttura">
   <div class="section-tag">03.2 — Struttura del Programma</div>
-  <h2>Come è organizzato il codice</h2>
+  <h2>Struttura del programma</h2>
 
-  <p>Il programma è contenuto in un <strong>unico file Python</strong>. Si divide in sezioni logiche chiare, ognuna con una responsabilità precisa:</p>
+  <p>Il programma è scritto in un unico file Python e si divide in sezioni logiche molto chiare:</p>
 
   <div class="arch-list">
     <div class="arch-item">
       <div>
-        <strong>Inizializzazione e Audio</strong>
-        <p>Avvia Pygame. Il mixer audio è dentro un <code>try-except</code>: se fallisce (PC senza casse), imposta <code>HAS_SOUND = False</code> e il gioco gira in modalità silenziosa.</p>
+        <strong>Inizializzazione e Gestione Audio</strong>
+        <p>Viene avviata Pygame. Per evitare crash sui PC della scuola (che spesso non hanno le casse collegate), l'inizializzazione del mixer audio è dentro un blocco <code>try-except</code>. Se l'audio fallisce, il gioco imposta <code>HAS_SOUND = False</code> e gira in modalità silenziosa senza bloccarsi.</p>
       </div>
     </div>
     <div class="arch-item">
       <div>
-        <strong>make_tone & SoundBank</strong>
-        <p>Funzioni che generano suoni calcolando onde matematiche (quadrate, sinusoidali, rumore bianco). Nessun file .wav esterno.</p>
+        <strong>make_tone e SoundBank</strong>
+        <p>La funzione <code>make_tone</code> crea suoni calcolando onde matematiche (quadrate, sinusoidali o rumore bianco). La classe <code>SoundBank</code> costruisce tutti i suoni sintetizzati all'avvio e carica i tre file MP3 esterni (<em>attenzione.mp3</em>, <em>allarme.mp3</em>, <em>arrabiato.mp3</em>) con un altro <code>try-except</code> interno.</p>
       </div>
     </div>
     <div class="arch-item">
       <div>
         <strong>Classe Map</strong>
-        <p>Gestisce le pareti dei livelli leggendo liste di stringhe (<code>#</code> = muro, <code>P</code> = partenza, <code>C</code> = PC, <code>B</code> = boss). Contiene anche la griglia <code>visited</code> per la minimappa.</p>
+        <p>Gestisce le pareti dei livelli leggendo liste di stringhe (dove <code>#</code> è muro, <code>P</code> è partenza, <code>B</code> è il boss). Nel Livello 1, i 3 PC vengono posizionati in punti casuali scelti tra le celle libere all'avvio. Contiene anche la griglia <code>visited</code> per la minimappa.</p>
       </div>
     </div>
     <div class="arch-item">
       <div>
-        <strong>Classi EnemyProfMattana & BossMusci</strong>
-        <p>Contengono l'IA dei professori. Mattana insegue e spara. Musci mantiene una distanza specifica: si avvicina se sei lontano, scappa se ti avvicini troppo.</p>
+        <strong>Classi EnemyProfMattana e BossMusci</strong>
+        <p>Contengono l'IA dei professori. Mattana si muove verso il giocatore se lontana, suona l'avviso da 5.4 unità, spara da 2–3 unità con cooldown di 2 secondi. Musci si avvicina per 2 secondi, urla, poi rimane a distanza di combattimento e lancia le sanzioni testuali ogni 1.8 secondi.</p>
       </div>
     </div>
     <div class="arch-item">
       <div>
         <strong>Classe Projectile</strong>
-        <p>Gestisce i proiettili di giocatore e nemici: calcola movimenti e collisioni con muri e personaggi.</p>
+        <p>Gestisce i colpi di giocatore e nemici. I proiettili amici viaggiano a 7.0 unità/sec, quelli nemici a 3.5. Controlla le collisioni con i muri (il proiettile muore) e con i personaggi (danno). I proiettili del boss hanno un attributo <code>label</code> con il testo della sanzione.</p>
       </div>
     </div>
     <div class="arch-item">
       <div>
         <strong>Classe Player</strong>
-        <p>Tiene traccia delle coordinate, dell'angolo di visuale e degli HP del giocatore.</p>
+        <p>Tiene traccia delle coordinate del giocatore, dell'angolo della visuale, dei punti Voto (max 10) e del cooldown dello sparo (0.18 secondi tra un colpo e l'altro).</p>
       </div>
     </div>
     <div class="arch-item">
       <div>
-        <strong>Classe Game (motore centrale)</strong>
-        <p>Contiene caricamento immagini, reset partita, movimento, timer, e tutto il rendering visivo tramite <code>cast_rays()</code> e <code>draw()</code>.</p>
+        <strong>Classe Game — motore centrale</strong>
+        <p>Contiene tutto il resto: caricamento immagini (gun.png, pc.png, crashed_pc.png, enemy.png, musci.png), reset della partita, gestione dei movimenti, dei timer, dei cutscene, degli stati di gioco (<em>game_start_delay → intro_cutscene → level1 → end_cutscene → transition → level2 → victory/gameover</em>) e tutto il rendering.</p>
       </div>
     </div>
   </div>
 
+  <p>Le funzioni di disegno fondamentali dentro la classe <code>Game</code> sono:</p>
+  <ul class="rules-list">
+    <li><span class="key">cast_rays</span> Proietta 180 raggi per coprire la visuale del giocatore, calcola la distanza e disegna strisce verticali di muro in 3D. Se <code>boss_mode</code> è attivo, colora i muri di viola scuro sfumato. Restituisce lo <code>zbuf</code> (distanze dei muri per ogni raggio).</li>
+    <li><span class="key">draw</span> Raccoglie tutti gli oggetti 3D in una lista <code>render_queue</code> con le loro distanze, li ordina dal più lontano al più vicino (Z-sorting) e li disegna in ordine di priorità: graffiti (+0.05 di offset, sempre dietro), poi PC, poi nemici (−0.05 di offset, sempre davanti). Poi disegna il HUD 2D sopra a tutto.</li>
+    <li><span class="key">draw_hud</span> Disegna la barra del Voto, il timer con i colori dinamici (nero → giallo a 20 sec → rosso a 10 sec), il contatore PC, la barra Aura del boss e il mirino rosso.</li>
+  </ul>
+
   <h3>Pseudocodice del ciclo principale</h3>
+  <pre><span class="cm"># ── AVVIO ────────────────────────────────────────────────</span>
+<span class="fn">inizializza</span> Pygame, audio (try-except), SoundBank, finestra
+<span class="fn">carica</span> immagini PNG (gun, pc, crashed_pc, enemy, musci)
+<span class="fn">reset</span>() → stato = <span class="str">"game_start_delay"</span> (1.2 sec di attesa)
 
-  <pre><span class="cm"># ── AVVIO ──────────────────────────────────</span>
-<span class="fn">inizializza</span> Pygame, audio (try-except), finestra
-<span class="fn">carica</span> livello 1 (mappa, nemici, timer)
-
-<span class="cm"># ── CICLO DI GIOCO ─────────────────────────</span>
+<span class="cm"># ── CICLO DI GIOCO ───────────────────────────────────────</span>
 <span class="kw">mentre</span> gioco_in_corso:
 
     <span class="cm"># 1. Input</span>
-    <span class="fn">leggi</span> tastiera e mouse
-    <span class="kw">se</span> WASD → <span class="fn">muovi</span> giocatore (con sliding sui muri)
-    <span class="kw">se</span> F → <span class="fn">spara</span> proiettile
-    <span class="kw">se</span> vicino a PC e premi F → <span class="fn">sabota</span> PC (BSOD)
+    <span class="fn">leggi</span> tastiera e mouse (pygame.event)
+    <span class="kw">se</span> WASD/frecce → <span class="fn">handle_movement</span>(dt) [con wall sliding]
+    <span class="kw">se</span> F vicino a PC → <span class="fn">try_infect_pc</span>() → BSOD + contatore
+    <span class="kw">se</span> F lontano da PC → <span class="fn">try_shoot</span>() [cooldown 0.18 sec]
+    <span class="kw">se</span> click tasto sx su RICOMINCIA → <span class="fn">reset</span>()
+    <span class="kw">se</span> R nella schermata finale → <span class="fn">reset</span>()
 
-    <span class="cm"># 2. Aggiornamento stato</span>
-    <span class="fn">aggiorna</span> posizioni nemici (IA Mattana / IA Musci)
-    <span class="fn">muovi</span> tutti i proiettili
-    <span class="fn">controlla</span> collisioni proiettili ↔ nemici / giocatore
-    <span class="fn">decrementa</span> timer (Livello 1)
+    <span class="cm"># 2. Aggiornamento stato (in base allo stato corrente)</span>
+    <span class="kw">se</span> game_start_delay: countdown 1.2 sec → intro_cutscene
+    <span class="kw">se</span> intro_cutscene: <span class="fn">update_cutscene</span>(dt) → level1
+    <span class="kw">se</span> level1:
+        <span class="fn">decrementa</span> timer (90 sec)
+        <span class="fn">aggiorna</span> EnemyProfMattana (IA, sparo, audio)
+        <span class="fn">aggiorna</span> tutti i proiettili
+        <span class="kw">se</span> pcs_destroyed &gt;= 3 → end_cutscene
+        <span class="kw">se</span> timer &lt;= 0 oppure Voto &lt;= 0 → gameover
+    <span class="kw">se</span> end_cutscene: <span class="fn">update_cutscene</span>(dt) → transition (flash 1.5 sec)
+    <span class="kw">se</span> level2:
+        <span class="fn">aggiorna</span> BossMusci (avvicinamento, urlo, sparo sanzioni)
+        <span class="fn">aggiorna</span> tutti i proiettili
+        <span class="kw">se</span> Aura Musci &lt;= 0 → <span class="fn">win</span>() → victory
+        <span class="kw">se</span> Voto &lt;= 0 → <span class="fn">start_game_over</span>() → gameover
 
-    <span class="cm"># 3. Controllo condizioni fine</span>
-    <span class="kw">se</span> HP_giocatore ≤ 0 <span class="kw">oppure</span> timer ≤ 0:
-        → schermata <span class="str">"BOCCIATO!"</span>
-    <span class="kw">se</span> entrambi_PC_crashati:
-        → <span class="fn">avvia</span> scena_testo → carica Livello 2
-    <span class="kw">se</span> HP_Musci ≤ 0:
-        → schermata <span class="str">"MISSIONE COMPIUTA!"</span>
+    <span class="cm"># 3. Rendering (ogni frame)</span>
+    zbuf = <span class="fn">cast_rays</span>(boss_mode)    <span class="cm"># muri 3D + sfondo</span>
+    <span class="fn">build</span> render_queue             <span class="cm"># graffiti, PC, nemici, proiettili</span>
+    <span class="fn">sort</span>(render_queue, distanza ↓) <span class="cm"># Z-sort: lontano → vicino</span>
+    <span class="fn">draw</span> ogni oggetto              <span class="cm"># clip con zbuf per i muri</span>
+    <span class="fn">draw_hud</span>()                     <span class="cm"># Voto, timer, mirino, ecc.</span>
+    <span class="fn">draw</span> damage_flash (rosso)      <span class="cm"># se colpito di recente</span>
+    <span class="fn">screen_shake</span>()                 <span class="cm"># offset casuale ±4px</span>
+    pygame.display.<span class="fn">flip</span>()</pre>
 
-    <span class="cm"># 4. Rendering</span>
-    <span class="fn">cast_rays</span>()          <span class="cm"># disegna muri 3D</span>
-    <span class="fn">z_sort</span> sprite/testi  <span class="cm"># ordina per distanza</span>
-    <span class="fn">draw_sprites</span>()       <span class="cm"># nemici, PC, proiettili</span>
-    <span class="fn">draw_graffiti</span>()      <span class="cm"># testi sui muri in prospettiva</span>
-    <span class="fn">draw_hud</span>()           <span class="cm"># minimappa, HP, mirino, timer</span>
-    <span class="fn">flip</span>()               <span class="cm"># aggiorna schermo</span>
-
-<span class="cm"># ── FINE ───────────────────────────────────</span>
-<span class="kw">se</span> premi R → <span class="fn">resetta</span> tutto e ricomincia dal Livello 1</pre>
-
-  <h3>Schema a blocchi del rendering</h3>
+  <h3>Schema a blocchi del rendering pipeline</h3>
   <div class="diagram-wrap">
-    <svg viewBox="0 0 820 320" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:820px; display:block; font-family:'Share Tech Mono', monospace;">
+    <svg viewBox="0 0 820 290" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:820px; display:block; font-family:'Share Tech Mono', monospace;">
       <defs>
         <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.25)"/>
+          <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.22)"/>
         </marker>
       </defs>
-
-      <!-- cast_rays box -->
-      <rect x="10" y="120" width="150" height="80" rx="8" fill="rgba(176,106,255,0.12)" stroke="rgba(176,106,255,0.4)" stroke-width="1"/>
-      <text x="85" y="153" text-anchor="middle" font-size="11" fill="#c99fff">cast_rays()</text>
-      <text x="85" y="170" text-anchor="middle" font-size="9" fill="rgba(176,106,255,0.6)">proietta 180 raggi</text>
-      <text x="85" y="183" text-anchor="middle" font-size="9" fill="rgba(176,106,255,0.6)">disegna strisce muro</text>
-
-      <!-- arrow 1 -->
-      <line x1="160" y1="160" x2="210" y2="160" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arr)"/>
-
-      <!-- zbuf box -->
-      <rect x="210" y="120" width="140" height="80" rx="8" fill="rgba(106,240,200,0.08)" stroke="rgba(106,240,200,0.3)" stroke-width="1"/>
-      <text x="280" y="153" text-anchor="middle" font-size="11" fill="#8af7d8">zbuf[ ]</text>
-      <text x="280" y="170" text-anchor="middle" font-size="9" fill="rgba(106,240,200,0.55)">distanze muro per</text>
-      <text x="280" y="183" text-anchor="middle" font-size="9" fill="rgba(106,240,200,0.55)">ogni raggio</text>
-
-      <!-- arrow 2 -->
-      <line x1="350" y1="160" x2="400" y2="160" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arr)"/>
-
-      <!-- render_queue box -->
-      <rect x="400" y="100" width="150" height="120" rx="8" fill="rgba(255,106,106,0.08)" stroke="rgba(255,106,106,0.3)" stroke-width="1"/>
-      <text x="475" y="133" text-anchor="middle" font-size="11" fill="#ff9999">render_queue</text>
-      <text x="475" y="150" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.55)">nemici + PC +</text>
-      <text x="475" y="163" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.55)">proiettili + graffiti</text>
-      <text x="475" y="180" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.45)">↕ sort() per distanza</text>
-      <text x="475" y="193" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.45)">(Z-sort lontano→vicino)</text>
-
-      <!-- arrow 3 -->
-      <line x1="550" y1="160" x2="600" y2="160" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arr)"/>
-
-      <!-- draw sprites box -->
-      <rect x="600" y="110" width="140" height="50" rx="8" fill="rgba(176,106,255,0.08)" stroke="rgba(176,106,255,0.25)" stroke-width="1"/>
-      <text x="670" y="133" text-anchor="middle" font-size="11" fill="#c99fff">draw_world_sprite</text>
-      <text x="670" y="149" text-anchor="middle" font-size="9" fill="rgba(176,106,255,0.5)">clip con zbuf</text>
-
-      <!-- draw graffiti box -->
-      <rect x="600" y="175" width="140" height="50" rx="8" fill="rgba(106,240,200,0.06)" stroke="rgba(106,240,200,0.2)" stroke-width="1"/>
-      <text x="670" y="198" text-anchor="middle" font-size="11" fill="#8af7d8">draw_graffiti</text>
-      <text x="670" y="214" text-anchor="middle" font-size="9" fill="rgba(106,240,200,0.45)">testo in prospettiva</text>
-
-      <!-- arrow to hud -->
-      <line x1="670" y1="225" x2="670" y2="260" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arr)"/>
-      <rect x="590" y="260" width="160" height="44" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-      <text x="670" y="281" text-anchor="middle" font-size="11" fill="rgba(232,232,240,0.7)">draw_hud()</text>
-      <text x="670" y="296" text-anchor="middle" font-size="9" fill="rgba(232,232,240,0.35)">minimappa · HP · mirino · timer</text>
-
-      <!-- label top -->
-      <text x="10" y="28" font-size="10" fill="rgba(255,255,255,0.2)">FRAME RENDERING PIPELINE</text>
-      <line x1="10" y1="35" x2="750" y2="35" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+      <!-- cast_rays -->
+      <rect x="10" y="100" width="148" height="90" rx="8" fill="rgba(176,106,255,0.12)" stroke="rgba(176,106,255,0.4)" stroke-width="1"/>
+      <text x="84" y="135" text-anchor="middle" font-size="11" fill="#c99fff">cast_rays()</text>
+      <text x="84" y="153" text-anchor="middle" font-size="9" fill="rgba(176,106,255,0.55)">180 raggi → strisce</text>
+      <text x="84" y="167" text-anchor="middle" font-size="9" fill="rgba(176,106,255,0.55)">muro bicolore / viola</text>
+      <line x1="158" y1="145" x2="210" y2="145" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arr)"/>
+      <!-- zbuf -->
+      <rect x="210" y="108" width="130" height="74" rx="8" fill="rgba(106,240,200,0.08)" stroke="rgba(106,240,200,0.28)" stroke-width="1"/>
+      <text x="275" y="138" text-anchor="middle" font-size="11" fill="#8af7d8">zbuf[ ]</text>
+      <text x="275" y="155" text-anchor="middle" font-size="9" fill="rgba(106,240,200,0.5)">distanza muro per</text>
+      <text x="275" y="168" text-anchor="middle" font-size="9" fill="rgba(106,240,200,0.5)">ogni raggio</text>
+      <line x1="340" y1="145" x2="390" y2="145" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arr)"/>
+      <!-- render_queue -->
+      <rect x="390" y="80" width="155" height="130" rx="8" fill="rgba(255,106,106,0.08)" stroke="rgba(255,106,106,0.28)" stroke-width="1"/>
+      <text x="467" y="113" text-anchor="middle" font-size="11" fill="#ff9999">render_queue</text>
+      <text x="467" y="130" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.5)">graffiti (dist+0.05)</text>
+      <text x="467" y="144" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.5)">PC (dist)</text>
+      <text x="467" y="158" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.5)">nemici (dist−0.05)</text>
+      <text x="467" y="172" text-anchor="middle" font-size="9" fill="rgba(255,106,106,0.5)">proiettili (dist)</text>
+      <text x="467" y="192" text-anchor="middle" font-size="8.5" fill="rgba(255,106,106,0.38)">↕ sort lontano → vicino</text>
+      <line x1="545" y1="145" x2="595" y2="145" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arr)"/>
+      <!-- draw objects -->
+      <rect x="595" y="96" width="148" height="58" rx="8" fill="rgba(176,106,255,0.08)" stroke="rgba(176,106,255,0.22)" stroke-width="1"/>
+      <text x="669" y="122" text-anchor="middle" font-size="11" fill="#c99fff">draw_world_sprite</text>
+      <text x="669" y="138" text-anchor="middle" font-size="9" fill="rgba(176,106,255,0.45)">clip con zbuf</text>
+      <!-- arrow down to hud -->
+      <rect x="595" y="168" width="148" height="52" rx="8" fill="rgba(106,240,200,0.06)" stroke="rgba(106,240,200,0.18)" stroke-width="1"/>
+      <text x="669" y="190" text-anchor="middle" font-size="11" fill="#8af7d8">draw_graffiti</text>
+      <text x="669" y="206" text-anchor="middle" font-size="9" fill="rgba(106,240,200,0.42)">testo in prospettiva</text>
+      <line x1="669" y1="220" x2="669" y2="250" stroke="rgba(255,255,255,0.18)" stroke-width="1" marker-end="url(#arr)"/>
+      <rect x="580" y="250" width="178" height="30" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <text x="669" y="270" text-anchor="middle" font-size="10" fill="rgba(232,232,240,0.55)">draw_hud · flash · shake · flip</text>
+      <text x="10" y="22" font-size="9.5" fill="rgba(255,255,255,0.18)">FRAME RENDERING PIPELINE — ogni fotogramma</text>
+      <line x1="10" y1="30" x2="760" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
     </svg>
   </div>
 
   <h3>Strutture dati principali</h3>
   <ul class="rules-list">
-    <li><span class="key">Map.grid</span> Lista di stringhe — ogni carattere è una cella (<code>#</code> muro, spazio vuoto, <code>P</code> partenza ecc.)</li>
-    <li><span class="key">render_queue</span> Lista di tuple <code>(distanza, tipo, oggetto)</code> ordinata per Z-sort</li>
-    <li><span class="key">zbuf[]</span> Array con la distanza del muro per ciascuno dei 180 raggi — impedisce agli sprite di disegnarsi davanti ai muri</li>
-    <li><span class="key">SoundBank</span> Dizionario <code>nome → pygame.Sound</code> con i suoni pre-generati all'avvio</li>
-    <li><span class="key">enemies[]</span> Lista di istanze <code>EnemyProfMattana</code> attive — ogni ondata ne aggiunge una nuova</li>
-    <li><span class="key">projectiles[]</span> Lista di istanze <code>Projectile</code> (giocatore + nemici) aggiornate ogni frame</li>
+    <li><span class="key">Map.grid</span> Lista di liste di interi (0 = pavimento, 1 = muro) generata leggendo le stringhe dei livelli.</li>
+    <li><span class="key">map.pc_positions</span> Lista di triple <code>[x, y, destroyed]</code> — una per ognuno dei 3 PC casuali del Livello 1.</li>
+    <li><span class="key">render_queue</span> Lista di tuple <code>(distanza, tipo, oggetto)</code> ordinata per Z-sort a ogni frame.</li>
+    <li><span class="key">zbuf[]</span> Array con la distanza del muro per ognuno dei 180 raggi — impedisce agli sprite di disegnarsi davanti ai muri.</li>
+    <li><span class="key">SoundBank.sounds</span> Dizionario <code>nome → pygame.Sound</code> con tutti i suoni (sintetizzati + MP3) pre-caricati all'avvio.</li>
+    <li><span class="key">army[]</span> Lista di istanze <code>EnemyProfMattana</code> attive — massimo una alla volta, sostituita ondata dopo ondata fino a 10 totali.</li>
+    <li><span class="key">projectiles[] / enemy_projectiles[]</span> Due liste separate per i proiettili del giocatore e dei nemici, aggiornate ogni frame.</li>
   </ul>
 </section>
 
 <div class="divider"></div>
 
-<!-- ─────────────────────────────────────── 4. SVILUPPO & AI -->
+<!-- ─── 4. SVILUPPO & AI ─── -->
 <section id="sviluppo">
   <div class="section-tag">04 — Sviluppo e uso dell'AI</div>
-  <h2>Come ho lavorato</h2>
+  <h2>Sviluppo e uso dell'AI</h2>
 
-  <h3>Diario di bordo</h3>
+  <h3>4.1 Diario di bordo</h3>
+
   <div class="timeline">
 
     <div class="tl-item">
-      <div class="tl-date">24 / 05 / 2026 &nbsp;·&nbsp; ore 19:30</div>
-      <div class="tl-title">Il cambio di idea</div>
-      <div class="tl-body">
-        Il progetto originale (<em>Dungeon of Aldric</em>, RPG fantasy con 5 livelli generati a caso, inventario, statistiche, chiavi e barra della sanità mentale) era esploso a quasi 2000 righe su <em>Cursor</em>. I token finivano subito, i bug erano ovunque e non si capiva più nulla. Ho deciso di azzerare le parti pesanti e trasformare tutto in una parodia scolastica con 2 livelli fatti bene.
-      </div>
+      <div class="tl-date">24 / 05 / 2026 &nbsp;·&nbsp; ore 19:30 — Il cambio di idea</div>
+      <div class="tl-body">All'inizio stavo cercando di programmare il gioco RPG fantasy (<em>Dungeon of Aldric</em>) con 5 livelli su Cursor. Il file era diventato un labirinto di quasi 2000 righe, i token finivano subito e c'erano bug ovunque. Insieme all'AI ho deciso di buttare via le parti pesanti (statistiche, inventari, generazione procedurale) e di fare una parodia scolastica molto più leggera e divertente, riducendo tutto a 2 livelli fatti bene. Ho impostato la struttura base del file con le costanti, le classi vuote e il ciclo di gioco principale.</div>
     </div>
 
     <div class="tl-item">
-      <div class="tl-date">25 / 05 / 2026 &nbsp;·&nbsp; ore 22:00</div>
-      <div class="tl-title">Movimenti e bug dello sparo</div>
-      <div class="tl-body">
-        I movimenti erano a scatti e c'era un bug per cui il giocatore feriva se stesso sparando. Ho chiesto all'AI di aggiungere lo sliding sui muri (<code>walkable</code> controllato separatamente per asse X e Y) e di distanziare la partenza del proiettile dal centro del personaggio per evitare l'autoferimento.
-      </div>
+      <div class="tl-date">24 / 05 / 2026 &nbsp;·&nbsp; ore 22:15 — Raycasting di base</div>
+      <div class="tl-body">Ho chiesto all'AI di spiegarmi come funziona il raycasting e di scrivere la prima versione della funzione <code>cast_rays()</code>. Il risultato era in 3D ma le strisce avevano la distorsione a "effetto fisheye". L'AI mi ha spiegato che bisognava moltiplicare la profondità per il coseno dell'angolo relativo al giocatore (<code>corrected = depth * cos(player_angle - ray_angle)</code>). Una volta capito questo, il 3D sembrava finalmente quello di un gioco vero.</div>
     </div>
 
     <div class="tl-item">
-      <div class="tl-date">26 / 05 / 2026 &nbsp;·&nbsp; ore 23:45</div>
-      <div class="tl-title">Bilanciamento del Livello 1</div>
-      <div class="tl-body">
-        Ho impostato il timer a 90 secondi, aggiunto la logica di sabotaggio PC (tasto F da vicino → BSOD) e strutturato le 3 ondate della Prof. Mattana in modo da non sovraccaricare Pygame su IDLE con troppi nemici contemporanei.
-      </div>
+      <div class="tl-date">25 / 05 / 2026 &nbsp;·&nbsp; ore 20:00 — Mappa e minimappa</div>
+      <div class="tl-body">Ho costruito la classe <code>Map</code> e i layout dei due livelli come stringhe di testo. Ho poi aggiunto la minimappa con la griglia <code>visited</code> e il punto blu del giocatore con la linea di direzione. Il problema iniziale era che la minimappa mostrava tutto il livello dall'inizio invece di scoprirsi durante l'esplorazione — poi ho deciso di lasciare la mappa sempre visibile con <code>reveal_full_minimap()</code> perché con il timer di 90 secondi il giocatore ha già abbastanza stress senza cercare i PC al buio.</div>
     </div>
 
     <div class="tl-item">
-      <div class="tl-date">27 / 05 / 2026 &nbsp;·&nbsp; ore 20:15</div>
-      <div class="tl-title">Transizione al Livello 2 — passaggio a Claude</div>
-      <div class="tl-body">
-        Finiti i token mensili su <em>Cursor</em>, ho spostato il codice su <em>Claude</em>. Il gioco crashava alla transizione perché mancava la costante <code>BOSS_WALL_COL</code>. Abbiamo definito la costante e modificato <code>cast_rays()</code> per colorare i muri di viola scuro quando la modalità boss è attiva.
-      </div>
+      <div class="tl-date">25 / 05 / 2026 &nbsp;·&nbsp; ore 22:00 — Movimenti e bug dello sparo</div>
+      <div class="tl-body">I movimenti iniziali erano a scatti e c'era un bug assurdo per cui quando il giocatore sparava feriva se stesso. Ho chiesto all'AI di inserire lo scivolamento sulle pareti (il codice controlla separatamente <code>walkable(nx, self.y)</code> e <code>walkable(self.x, ny)</code>) e di sistemare le collisioni dei proiettili amichevoli distanziando la partenza del colpo dal centro del giocatore. Ho anche dovuto aggiungere la normalizzazione del vettore di movimento per evitare che diagonali andasse più veloce della normale.</div>
     </div>
 
     <div class="tl-item">
-      <div class="tl-date">28 / 05 / 2026 &nbsp;·&nbsp; ore 01:10</div>
-      <div class="tl-title">Z-sort, graffiti e compatibilità IDLE</div>
+      <div class="tl-date">26 / 05 / 2026 &nbsp;·&nbsp; ore 19:45 — Sprite e immagini PNG</div>
+      <div class="tl-body">Ho integrato il sistema di immagini PNG con la funzione <code>load_image()</code> che usa <code>try-except</code> per non crashare se un file manca. Ho scritto <code>draw_world_sprite()</code> con il calcolo dell'angolo con <code>atan2</code> per posizionare gli sprite sullo schermo in base alla direzione del giocatore, la scalatura in base alla distanza e il clip con lo zbuf per nascondere gli sprite dietro i muri. Ho poi aggiunto la barra HP verde/rossa sopra agli sprite dei nemici.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">26 / 05 / 2026 &nbsp;·&nbsp; ore 23:45 — Bilanciamento del Livello 1 e cutscene</div>
+      <div class="tl-body">Ho impostato il timer a 90 secondi e aggiunto la logica di sabotaggio PC (tasto F vicino → BSOD). Ho strutturato le 10 ondate della Prof. Mattana (una alla volta) per non far rallentare Pygame su IDLE con troppi nemici insieme. Ho anche costruito il sistema di cutscene con l'effetto di "scrittura a macchina" (45 caratteri al secondo) per le scene di intro e di fine livello.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">27 / 05 / 2026 &nbsp;·&nbsp; ore 18:30 — Audio sintetizzato</div>
+      <div class="tl-body">Ho aggiunto tutta la parte audio generata matematicamente: la funzione <code>make_tone()</code> con tre tipi di onda (sinusoidale, quadrata, rumore bianco). Ho poi costruito la <code>SoundBank</code> con tutti i suoni necessari: lo sparo (onda quadra ad alta frequenza), il danno (rumore bianco), i tre accordi calanti del game over, il suono del PC in crash e il loop del boss. Tutto dentro un <code>try-except</code> per il caso in cui l'audio non funzioni.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">27 / 05 / 2026 &nbsp;·&nbsp; ore 20:15 — Transizione al Livello 2 e passaggio a Claude</div>
+      <div class="tl-body">Finiti i token mensili su Cursor, ho dovuto spostare il codice e usare Claude (versione free) per sistemare la transizione tra i livelli. Il gioco crashava quando passava al Livello 2 perché mancava la definizione corretta del colore delle pareti del boss. Abbiamo definito la costante <code>BOSS_WALL_COL = (80, 20, 60)</code> e modificato <code>cast_rays()</code> per applicare una sfumatura basata sulla distanza in modalità boss. Ho anche aggiunto il boss loop musicale con <code>SFX.play("boss_loop", 0.3, loops=-1)</code>.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">28 / 05 / 2026 &nbsp;·&nbsp; ore 18:00 — Graffiti sui muri e Z-sorting</div>
+      <div class="tl-body">Ho aggiunto i tre graffiti (<em>"Viva l'informatica!"</em>, <em>"La A in Alom sta per aura"</em>, <em>"Aura di Musci +1000"</em>) con la funzione <code>draw_graffiti()</code>. La dimensione del testo dipende dalla distanza (<code>size = max(18, min(54, int(32/dist*4.5)))</code>) e la posizione verticale è calcolata in modo da stare nella zona bianca della parete. Per risolvere il problema dell'overlapping ho implementato la <code>render_queue</code> con Z-sorting e gli offset di distanza (+0.05 per i graffiti, −0.05 per i nemici).</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">28 / 05 / 2026 &nbsp;·&nbsp; ore 23:00 — File MP3 esterni e screen shake</div>
+      <div class="tl-body">Ho caricato i tre file audio reali (<em>attenzione.mp3</em>, <em>allarme.mp3</em>, <em>arrabiato.mp3</em>) nella <code>SoundBank</code> con un <code>try-except</code> separato. Ho poi calibrato Mattana in modo che l'audio "attenzione" parta esattamente 3 secondi prima che lei entri nel range di fuoco (5.4 unità = 3 sec × 0.8 velocità + distanza di fuoco 3.0). Ho anche aggiunto lo screen shake (<code>shake_time</code>, offset ±4px) sia per i colpi ricevuti che per lo sparo del giocatore.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">29 / 05 / 2026 &nbsp;·&nbsp; ore 19:00 — Grandi fix del giorno della consegna</div>
       <div class="tl-body">
-        Ultimo problema: i testi delle sanzioni di Musci e i graffiti si vedevano sopra i nemici vicini a causa dell'overlapping. Abbiamo implementato la <code>render_queue</code> ordinata per distanza. Aggiunto anche il <code>try-except</code> sull'audio per garantire il funzionamento sui PC della scuola senza la cassa.
+        Nella sessione finale prima della consegna ho fatto diversi miglioramenti importanti:
+        <br><br>
+        • <strong>Spawn range di Mattana</strong> — ho aggiunto il controllo <code>hypot >= 5.0</code> in <code>get_random_spawn_point()</code> così Mattana non appare mai direttamente accanto al giocatore.
+        <br>• <strong>Cooldown di fuoco di Mattana</strong> — aumentato di 1 secondo esatto (da 1.0 a 2.0) per rendere il combattimento meno caotico.
+        <br>• <strong>Intro del boss</strong> — Musci ora si avvicina per 2 secondi, poi si ferma, urla "arrabiato" e solo dopo inizia a sparare. Questo rende l'ingresso del boss molto più cinematografico.
+        <br>• <strong>Sistema Voto/Aura</strong> — ho convertito gli HP classici in "Voto" (giocatore, max 10) e "Aura" (boss, max 100, −10 a colpo). Questo rende il tema scolastico integrato nel gameplay e non solo nella grafica.
+        <br>• <strong>Priorità Z-ordering</strong> — fissata la gerarchia definitiva: graffiti sempre dietro (offset +0.05), PC in mezzo, nemici sempre davanti (offset −0.05).
+        <br>• <strong>Colori UI</strong> — tutti i testi operativi ("PC in crash", "Ondate Mattana", "F per sparare") portati in rosso brillante. Timer con cambio colore dinamico (nero → giallo a 20 sec → rosso a 10 sec). Proiettili del boss in giallo brillante su cerchio viola. Mirino cambiato da nero a rosso.
+        <br>• <strong>Bug del pulsante RICOMINCIA</strong> — ho dovuto aggiungere un rilevamento esatto delle coordinate del click, con un offset di 70px per la schermata di game over e 50px per quella di vittoria, per far corrispondere il <code>Rect</code> alla posizione reale del pulsante disegnato.
       </div>
     </div>
 
   </div>
 
-  <h3>Come ho usato l'AI</h3>
+  <h3>4.2 Modalità di utilizzo dell'Intelligenza Artificiale</h3>
 
   <p>Gli strumenti usati: <span class="badge badge-purple">Cursor</span> <span class="badge badge-teal">Claude (free)</span></p>
-  <p style="font-size:0.87rem; color:var(--muted); margin-bottom:1.5rem;">Programmare un motore 3D a raggi da zero in terza superiore è quasi impossibile senza supporto. Ho usato l'AI principalmente per tre cose:</p>
+
+  <p>L'AI è stata fondamentale perché programmare un motore geometrico 3D a raggi da soli in terza superiore è quasi impossibile, soprattutto considerando che non avevo seguito bene le spiegazioni all'inizio. Ho usato l'AI per:</p>
 
   <div class="ai-item">
     <div class="ai-num">1</div>
-    <div>
-      <p><strong style="color:var(--text);">Formule matematiche:</strong> calcoli di seni e coseni per i raggi in <code>cast_rays()</code>, e l'angolo con <code>atan2</code> per orientare gli sprite dei professori sullo schermo in base alla posizione del giocatore.</p>
-    </div>
+    <div><p><strong style="color:var(--text);">Scrivere le formule matematiche:</strong> come i calcoli dei seni e coseni per i raggi in <code>cast_rays()</code>, la correzione del fisheye con il coseno dell'angolo relativo, e il calcolo dell'angolo con <code>atan2</code> per capire dove orientare gli sprite dei professori sullo schermo in base alla posizione del giocatore.</p></div>
   </div>
-
   <div class="ai-item">
     <div class="ai-num">2</div>
     <div>
-      <p><strong style="color:var(--text);">Risoluzione dei crash:</strong> incollavo l'errore stampato da IDLE e chiedevo spiegazioni. Esempio:</p>
-      <div class="prompt-block">"Ho questo errore: IndexError: list index out of range nella funzione cast_rays alla riga 312. Il codice è [...]  — che cosa sta succedendo e come lo sistemo?"</div>
+      <p><strong style="color:var(--text);">Risolvere i crash:</strong> incollando gli errori che IDLE stampava sulla console e facendomi spiegare quale variabile o indice fosse fuori posto. Esempio di prompt usato:</p>
+      <div class="prompt-block">"Ho questo errore: IndexError: list index out of range nella funzione cast_rays alla riga 312 — il ray_idx calcolato supera la lunghezza dello zbuf. Come mai succede e come lo sistemo?"</div>
     </div>
   </div>
-
   <div class="ai-item">
     <div class="ai-num">3</div>
     <div>
-      <p><strong style="color:var(--text);">Logica scolastica:</strong> dando istruzioni precise per adattare il codice alla parodia. Esempio:</p>
-      <div class="prompt-block">"Modifica i proiettili del boss in modo che invece di un cerchio colorato disegnino sullo schermo una stringa di testo pescata a caso dalla lista BOSS_PUNISHMENTS, e fai in modo che la dimensione del testo dipenda dalla distanza dal giocatore."</div>
+      <p><strong style="color:var(--text);">Adattare la logica scolastica:</strong> dando indicazioni precise su come modificare il codice per la parodia. Esempio:</p>
+      <div class="prompt-block">"Modifica i proiettili del boss in modo che invece di un cerchio colorato disegnino sullo schermo una stringa di testo pescata a caso dalla lista BOSS_PUNISHMENTS, e fai in modo che la dimensione del testo dipenda dalla distanza."</div>
+    </div>
+  </div>
+  <div class="ai-item">
+    <div class="ai-num">4</div>
+    <div>
+      <p><strong style="color:var(--text);">Sincronizzazione audio-gameplay:</strong> ho chiesto all'AI di calcolare la distanza esatta (5.4 unità) a cui Mattana deve suonare l'avviso perché il suono finisca esattamente quando lei entra nel range di fuoco, in base alla sua velocità (0.8 unità/sec) e alla distanza di fuoco (3.0 unità). Per Musci invece lo stesso ragionamento con i 2 secondi di approccio prima dell'urlo.</p>
     </div>
   </div>
 
-  <div class="box" style="margin-top:1.5rem;">
-    <p style="margin:0; font-size:0.85rem; color:var(--muted);">
-      <strong style="color:var(--text);">Cosa ho modificato rispetto al codice generato:</strong>
-      i nomi delle variabili erano in inglese generico → li ho rinominati tutti con i nomi dei professori e i termini scolastici. Ho dovuto leggere riga per riga ogni parte aggiunta per capire dove si rompeva qualcos'altro, soprattutto nella fase di debug dei graffiti.
-    </p>
+  <div class="box" style="margin-top: 1.25rem;">
+    <p style="margin:0; font-size:0.87rem; color: rgba(232,232,240,0.82);"><strong style="color:var(--text);">Come ho modificato il codice generato dall'AI:</strong> ho rinominato quasi tutte le variabili dal generico inglese ai nomi scolastici specifici (<code>hp → voto</code>, <code>enemy → Prof. Mattana</code>, ecc.). Ho dovuto leggere il codice riga per riga ogni volta che l'AI aggiungeva qualcosa, perché quasi sempre si rompeva qualcos'altro e saltava fuori un nuovo errore. Ho capito quali parti facevano cosa proprio durante questo processo di debug, anche se ammetto di aver usato l'AI in modo abbastanza dipendente, specialmente all'inizio.</p>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ─────────────────────────────────────── 5. TEST -->
+<!-- ─── 5. TEST ─── -->
 <section id="test">
   <div class="section-tag">05 — Test e Risultati</div>
-  <h2>Come ho verificato il gioco</h2>
+  <h2>Test e risultati</h2>
 
-  <p>Ho testato il gioco passo dopo passo lanciandolo da IDLE dopo ogni modifica, per controllare che rispettasse le regole stabilite in fase di progettazione.</p>
+  <p>Ho testato il gioco passo dopo passo lanciandolo direttamente da IDLE dopo ogni modifica, controllando che ogni parte rispettasse le regole stabilite in fase di progettazione.</p>
 
   <div style="overflow-x:auto;">
     <table class="test-table">
       <thead>
-        <tr>
-          <th>#</th>
-          <th>Azione eseguita</th>
-          <th>Comportamento atteso</th>
-          <th>Esito</th>
-        </tr>
+        <tr><th>#</th><th>Azione eseguita</th><th>Comportamento atteso</th><th>Risultato</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td style="font-family:var(--mono); color:var(--muted); font-size:0.75rem;">01</td>
-          <td>Avvicinarsi a un PC e premere <strong>F</strong></td>
-          <td>PC in crash, contatore sale, suono di blocco</td>
+          <td style="font-family:var(--mono); color:var(--muted); font-size:0.72rem;">01</td>
+          <td>Avvicinarsi a un PC (distanza &lt; 1.0) e premere <strong>F</strong></td>
+          <td>Il PC mostra la schermata blu (BSOD), il contatore "PC in crash" sale, si sente il suono</td>
           <td><span class="pass">SUPERATO</span></td>
         </tr>
         <tr>
-          <td style="font-family:var(--mono); color:var(--muted); font-size:0.75rem;">02</td>
-          <td>Essere colpiti da Mattana o dalle note di Musci</td>
-          <td>HP −10, flash rosso sullo schermo</td>
+          <td style="font-family:var(--mono); color:var(--muted); font-size:0.72rem;">02</td>
+          <td>Premere <strong>F</strong> lontano da tutti i PC</td>
+          <td>Il giocatore spara un proiettile (suono di sparo, recoil e screen shake)</td>
           <td><span class="pass">SUPERATO</span></td>
         </tr>
         <tr>
-          <td style="font-family:var(--mono); color:var(--muted); font-size:0.75rem;">03</td>
-          <td>Far scadere i 90 secondi nel Livello 1</td>
-          <td>Schermata "BOCCIATO!" in nero</td>
+          <td style="font-family:var(--mono); color:var(--muted); font-size:0.72rem;">03</td>
+          <td>Essere colpiti dal proiettile della Prof. Mattana</td>
+          <td>Il Voto scende di 1, schermo fa flash rosso e screen shake, suono di danno</td>
           <td><span class="pass">SUPERATO</span></td>
         </tr>
         <tr>
-          <td style="font-family:var(--mono); color:var(--muted); font-size:0.75rem;">04</td>
-          <td>Sabotare il secondo PC nel Livello 1</td>
-          <td>Scena di testo, transizione al Livello 2</td>
+          <td style="font-family:var(--mono); color:var(--muted); font-size:0.72rem;">04</td>
+          <td>Portare il Voto a 0 venendo colpiti 10 volte</td>
+          <td>Gioco passa allo stato "gameover", suonano 3 note calanti, schermata nera "BOCCIATO!"</td>
           <td><span class="pass">SUPERATO</span></td>
         </tr>
         <tr>
-          <td style="font-family:var(--mono); color:var(--muted); font-size:0.75rem;">05</td>
-          <td>Colpire Musci 10 volte nel Livello 2</td>
-          <td>Boss scompare, schermata verde vittoria</td>
+          <td style="font-family:var(--mono); color:var(--muted); font-size:0.72rem;">05</td>
+          <td>Far scadere i 90 secondi senza sabotare tutti i PC</td>
+          <td>Stesso effetto del game over per vita a zero</td>
           <td><span class="pass">SUPERATO</span></td>
         </tr>
         <tr>
-          <td style="font-family:var(--mono); color:var(--muted); font-size:0.75rem;">06</td>
-          <td>Premere <strong>R</strong> nella schermata finale</td>
-          <td>Reset istantaneo, ricomincia dal Livello 1</td>
+          <td style="font-family:var(--mono); color:var(--muted); font-size:0.72rem;">06</td>
+          <td>Sabotare il terzo PC</td>
+          <td>Si blocca il gioco in end_cutscene, appare il testo scritto lettera per lettera, poi flash bianco e Livello 2</td>
           <td><span class="pass">SUPERATO</span></td>
         </tr>
         <tr>
-          <td style="font-family:var(--mono); color:var(--muted); font-size:0.75rem;">07</td>
-          <td>Avviare su PC senza casse audio collegate</td>
-          <td>Il gioco parte in modalità silenziosa senza crash</td>
+          <td style="font-family:var(--mono); color:var(--muted); font-size:0.72rem;">07</td>
+          <td>Colpire il Prof. Musci 10 volte (Aura da 100 a 0)</td>
+          <td>Il boss scompare, schermata verde animata "MISSIONE COMPIUTA!"</td>
+          <td><span class="pass">SUPERATO</span></td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--mono); color:var(--muted); font-size:0.72rem;">08</td>
+          <td>Premere <strong>R</strong> nella schermata finale (sia vittoria che game over)</td>
+          <td>Reset istantaneo: Voto torna a 10, timer a 90, PC diventano tutti non-crashati, nemici e proiettili cancellati</td>
+          <td><span class="pass">SUPERATO</span></td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--mono); color:var(--muted); font-size:0.72rem;">09</td>
+          <td>Cliccare il pulsante verde "RICOMINCIA" con il mouse</td>
+          <td>Stessa funzione del tasto R — prima non funzionava (bug degli offset), ora sì</td>
+          <td><span class="pass">SUPERATO</span></td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--mono); color:var(--muted); font-size:0.72rem;">10</td>
+          <td>Avviare il gioco su un PC senza casse audio collegate</td>
+          <td>Il gioco deve partire in modalità silenziosa senza crash (try-except sull'inizializzazione del mixer)</td>
           <td><span class="pass">SUPERATO</span></td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <h3>Bug noti non risolti</h3>
+  <h3>5.2 Bug e problemi noti non risolti</h3>
+  <p>Anche se il gioco è stabile e si gioca dall'inizio alla fine senza crash, ci sono dei piccoli difetti grafici che non sono riuscito a risolvere a causa delle limitazioni del raycasting 2D su Pygame e della fine dei token dell'AI:</p>
+
   <div class="box box-red">
-    <p style="font-size:0.87rem; margin-bottom:0.75rem;">Il gioco è stabile dall'inizio alla fine senza crash, ma restano alcuni difetti grafici:</p>
-    <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem;">
-      <li style="font-size:0.85rem; color:rgba(232,232,240,0.75); padding-left:1.2rem; position:relative;">
+    <ul style="list-style:none; display:flex; flex-direction:column; gap:0.65rem;">
+      <li style="font-size:0.87rem; color:rgba(232,232,240,0.78); padding-left:1.2rem; position:relative; line-height:1.65;">
         <span style="position:absolute; left:0; color:var(--accent3);">▸</span>
-        <strong style="color:var(--text);">Sfarfallio dei graffiti:</strong> i testi sui muri a volte fluttuano quando ci si gira velocemente — il calcolo della coordinata X soffre di piccole approssimazioni matematiche.
+        <strong style="color:var(--text);">Graffiti che fluttuano nell'aria (bug principale):</strong> è il problema più evidente. Le scritte sui muri ("Aura di Musci +1000" ecc.) a volte sembrano stare a mezz'aria invece di essere incollate alla parete, e sfarfallano quando ci si gira velocemente. Nonostante molti prompt scambiati con l'AI, il calcolo della coordinata X della scritta soffre ancora di piccole approssimazioni matematiche nella conversione tra spazio 3D e pixel schermo. Questo è legato al fatto che il raycasting lavora per colonne verticali di pixel, non per superfici, quindi posizionare un testo esattamente su una parete specifica è molto più complicato di quanto sembri.
       </li>
-      <li style="font-size:0.85rem; color:rgba(232,232,240,0.75); padding-left:1.2rem; position:relative;">
+      <li style="font-size:0.87rem; color:rgba(232,232,240,0.78); padding-left:1.2rem; position:relative; line-height:1.65;">
         <span style="position:absolute; left:0; color:var(--accent3);">▸</span>
-        <strong style="color:var(--text);">Invisibilità da contatto:</strong> se Mattana rasenta lo stesso muro del giocatore, il suo sprite può sparire per un secondo (la minimappa la mostra ancora correttamente).
+        <strong style="color:var(--text);">Invisibilità da contatto ravvicinato:</strong> se ci si attacca completamente a un muro e la Prof. Mattana si sposta rasente lo stesso identico muro, il suo sprite può sparire improvvisamente dall'inquadratura 3D per un secondo, anche se la minimappa continua a indicare che è lì vicino.
       </li>
-      <li style="font-size:0.85rem; color:rgba(232,232,240,0.75); padding-left:1.2rem; position:relative;">
+      <li style="font-size:0.87rem; color:rgba(232,232,240,0.78); padding-left:1.2rem; position:relative; line-height:1.65;">
         <span style="position:absolute; left:0; color:var(--accent3);">▸</span>
-        <strong style="color:var(--text);">Overlapping a grande distanza:</strong> lo Z-sort funziona bene da vicino, ma elementi decorativi lontani a volte si sovrappongono davanti a Mattana. Si risolve da solo quando si avvicina.
+        <strong style="color:var(--text);">Overlapping a grande distanza:</strong> lo Z-sorting funziona benissimo da vicino, ma se la Prof. Mattana si trova molto lontana, elementi decorativi dietro di lei a volte si sovrappongono davanti alla sua figura. Quando si avvicina per attaccare, l'ordine dei disegni torna perfetto.
       </li>
     </ul>
   </div>
@@ -1168,87 +752,85 @@
 
 <div class="divider"></div>
 
-<!-- ─────────────────────────────────────── 6. CONCLUSIONI -->
+<!-- ─── 6. CONCLUSIONI ─── -->
 <section id="conclusioni">
   <div class="section-tag">06 — Conclusioni</div>
-  <h2>Riflessione personale</h2>
+  <h2>Conclusioni e riflessione personale</h2>
 
-  <div class="reflection-grid">
+  <p>Questo progetto mi ha insegnato tantissime cose su come funziona la programmazione con Pygame. Devo essere onesto: quando Lei ha detto alla classe che non ci sarebbero stati compiti o esami scritti tradizionali su questo argomento, non ho preso la cosa sul serio. Non ho fatto pratica e non ricordavo nemmeno le cose base. Dover fare questo videogioco mi ha costretto a mettermi sotto e a capire almeno i concetti fondamentali dei cicli, delle liste e del disegno delle forme.</p>
+
+  <p>Purtroppo devo ammettere che ho scritto quasi tutto il codice facendomi aiutare dall'AI, perché l'algoritmo matematico per fare il 3D da zero era troppo complicato per le mie capacità e andava oltre quello che riuscivo a fare da solo. Penso di aver usato l'AI un po' troppo e in modo troppo passivo all'inizio.</p>
+
+  <p>La parte in cui ho imparato di più è stata la caccia ai bug. Ogni volta che l'AI aggiungeva una riga per fare una modifica, si rompeva qualcos'altro e saltava fuori un errore. Spiegare all'AI i difetti grafici con precisione millimetrica e chiara senza ottenere subito il risultato giusto è stato davvero frustrante. Però questo mi ha costretto a leggere il codice riga per riga per capire dove fosse l'errore. Alla fine, anche con i limiti di IDLE (che non è fatto per i giochi in 3D), sono riuscito a sistemare quasi tutto.</p>
+
+  <p>Se potessi tornare indietro e rifare il progetto da capo, organizzerei meglio il tempo e proverei a usare di più anche Gemini fin dall'inizio, invece di trovarmi a cambiare strumento a metà perché i token di Cursor erano finiti.</p>
+
+  <div class="reflection-grid" style="margin-top: 1.5rem;">
     <div class="reflect-card">
       <div class="q">Cosa ho imparato</div>
-      <p>Come funzionano i cicli di gioco, le liste, il disegno di forme con Pygame e — almeno a grandi linee — la matematica dietro il raycasting 3D.</p>
+      <p>Come funzionano i cicli di gioco, le liste, il disegno con Pygame e — almeno a grandi linee — la geometria del raycasting 3D. Ho capito anche come gestire stati multipli in un programma complesso.</p>
     </div>
     <div class="reflect-card">
       <div class="q">Cosa è stato più difficile</div>
-      <p>Il debug dei graffiti sui muri: spiegare all'AI il problema grafico in modo preciso senza ottenere subito il risultato giusto è stato frustrante.</p>
+      <p>Il debug dei graffiti sui muri. Spiegare il problema grafico all'AI in modo preciso, senza riuscire ad avere subito il risultato giusto, è stato quello che mi ha portato via più tempo in assoluto.</p>
     </div>
     <div class="reflect-card">
-      <div class="q">Cosa rifarei in modo diverso</div>
-      <p>Organizzerei meglio il tempo, proverei Gemini fin dall'inizio come alternativa quando i token di Cursor finiscono, e partirei direttamente con un progetto semplice invece di stravolgere tutto a metà.</p>
+      <div class="q">Una difficoltà superata</div>
+      <p>Il bug del pulsante RICOMINCIA che non rispondeva al click. Ho dovuto capire come funziona il sistema di coordinate di Pygame tra la superficie reale e quella del display, e aggiungere l'offset corretto per la posizione del <code>Rect</code>.</p>
     </div>
     <div class="reflect-card">
-      <div class="q">Ho usato l'AI in modo intelligente?</div>
-      <p>Onestamente, all'inizio troppo passivo. La parte in cui ho imparato di più è stata la caccia ai bug: leggere il codice riga per riga per capire dove si rompeva qualcos'altro mi ha insegnato più di qualsiasi prompt.</p>
+      <div class="q">Se rifacessi il progetto</div>
+      <p>Partirei direttamente con un progetto semplice invece di cambiare idea a metà. Userei Gemini come alternativa fin dall'inizio. E seguirei meglio le spiegazioni in classe fin dall'inizio del modulo.</p>
     </div>
-  </div>
-
-  <div class="box box-accent" style="margin-top:1.5rem;">
-    <p style="font-size:0.88rem; color:rgba(232,232,240,0.85); margin:0;">
-      All'inizio dell'anno, quando hai detto che non ci sarebbero stati compiti o esami scritti tradizionali, non ho preso la cosa sul serio. Questo progetto mi ha costretto a recuperare. Non so ancora programmare un motore 3D da solo, ma adesso almeno so <em>cosa</em> sta facendo il codice.
-    </p>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ─────────────────────────────────────── 7. ALLEGATI -->
+<!-- ─── 7. ALLEGATI ─── -->
 <section id="allegati">
   <div class="section-tag">07 — Allegati</div>
-  <h2>Screenshot & Codice</h2>
+  <h2>Screenshot del gioco</h2>
 
-  <p style="color:var(--muted); font-size:0.85rem; margin-bottom:1.5rem;">
-    Gli screenshot mostrano le schermate principali del gioco in esecuzione. Il file sorgente Python è scaricabile in fondo.
-  </p>
+  <p style="color:var(--muted); font-size:0.87rem; margin-bottom:1.25rem;">Screenshot delle schermate principali del gioco in esecuzione.</p>
 
   <div class="screenshot-grid">
     <div class="screenshot-item">
-      <img src="ss-1.png" alt="Schermata di avvio" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="screenshot-placeholder" style="display:none;">ss-1.png</div>
-      <div class="ss-label">Avvio / schermata iniziale</div>
+      <img src="ss-1.png" alt="Visuale 3D con la Prof. Mattana">
+      <div class="ss-label">Livello 1 — visuale 3D con Prof. Mattana</div>
     </div>
     <div class="screenshot-item">
-      <img src="ss-2.png" alt="Visuale 3D Livello 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="screenshot-placeholder" style="display:none;">ss-2.png</div>
-      <div class="ss-label">Livello 1 — visuale 3D con Mattana</div>
+      <img src="ss-2.png" alt="Schermata PC crashato (BSOD)">
+      <div class="ss-label">PC sabotato — schermata blu (BSOD)</div>
     </div>
     <div class="screenshot-item">
-      <img src="ss-3.png" alt="Schermata BSOD" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="screenshot-placeholder" style="display:none;">ss-3.png</div>
-      <div class="ss-label">PC crashato (BSOD) / Livello 2 Musci</div>
+      <img src="ss-3.png" alt="Visuale 3D con il Prof. Musci">
+      <div class="ss-label">Livello 2 — arena viola con Prof. Musci</div>
     </div>
     <div class="screenshot-item">
-      <img src="ss-4.png" alt="Schermata finale" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="screenshot-placeholder" style="display:none;">ss-4.png</div>
+      <img src="ss-4.png" alt="Schermata finale">
       <div class="ss-label">Schermata finale</div>
     </div>
   </div>
 
-  <p style="font-size:0.85rem; color:var(--muted); margin-top:1.5rem;">Codice sorgente Python del gioco:</p>
-  <a href="dungeon_di_musci.py" download class="download-btn">
+  <h3>Codice sorgente e file del gioco</h3>
+  <p style="font-size:0.87rem; color:rgba(232,232,240,0.78);">Il programma dipende da file esterni (immagini PNG e audio MP3) oltre al file Python principale. Per scaricare tutto il necessario in una sola cartella, usare il link Google Drive qui sotto:</p>
+
+  <a href="https://drive.google.com/drive/folders/1imJr-F3lgC5QLJ4jhUWe6mjJU-cxyksG?usp=drive_link" target="_blank" rel="noopener" class="download-btn">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
       <polyline points="7 10 12 15 17 10"/>
       <line x1="12" y1="15" x2="12" y2="3"/>
     </svg>
-    scarica dungeon_di_musci.py
+    scarica tutti i file del gioco (Google Drive)
   </a>
 </section>
 
 </main>
 
-<!-- ═══════════════════════════════════════════════════════ FOOTER -->
+<!-- FOOTER -->
 <footer>
-  M Tashriful Alom &nbsp;·&nbsp; 3 BTLC &nbsp;·&nbsp; Dungeon di Musci &nbsp;·&nbsp; 2025–2026
+  M Tashriful Alom &nbsp;·&nbsp; 3 BTLC &nbsp;·&nbsp; Dungeon di Musci &nbsp;·&nbsp; A.S. 2025–2026
 </footer>
 
 </body>
