@@ -20,7 +20,6 @@ Il giocatore parte con **100 HP**. Ogni colpo subìto riduce la vita del 10%. Se
 * **Motore 3D Raycasting Nativo:** La prospettiva tridimensionale non usa librerie esterne o motori pronti, ma proietta 180 raggi matematici in tempo reale per calcolare la distanza delle pareti e simulare la profondità (stile *Wolfenstein 3D*).
 * **Z-Sorting & Sprite Rendering:** Gestione avanzata degli oggetti tridimensionali (nemici, proiettili, PC) ordinati dinamicamente in base alla distanza dal giocatore per evitare bug di sovrapposizione visiva.
 * **Graffiti e Testo Prospettico:** Scritte e meme scolastici proiettati direttamente sulle pareti che si ridimensionano in tempo reale seguendo la prospettiva del giocatore.
-* **Audio Procedurale:** Tutti gli effetti sonori sono generati matematicamente campionando onde sinusoidali e rumore bianco direttamente via software, senza caricare file `.mp3` o `.wav` esterni.
 * **Compatibilità Hardware:** Il codice include un blocco di controllo `try-except` per l'inizializzazione del mixer audio. Se eseguito sui PC della scuola privi di dispositivi di output audio, il gioco si avvia automaticamente in modalità silenziosa evitando il crash.
 
 ---
