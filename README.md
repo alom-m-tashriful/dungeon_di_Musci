@@ -28,7 +28,7 @@ Il giocatore parte con **100 HP**. Ogni colpo subìto riduce la vita del 10%. Se
 
 * **W, A, S, D** (o **Frecce**): Movimento del personaggio e rotazione della visuale.
 * **MOUSE (Click sinistro)** / **SPAZIO**: Spara.
-* **F**: Interagisci con i PC scolastici.
+* **F**: Per sparare o per interagire con i PC scolastici.
 * **R** (nella schermata finale): Riavvia istantaneamente la partita.
 
 ---
