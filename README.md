@@ -11,7 +11,7 @@ Il gioco è strutturato su **2 livelli complessivi**:
 1. **Livello 1 (La Classe):** Il giocatore ha a disposizione **90 secondi** per trovare e sabotare i 2 computer del laboratorio scolastico premendo il tasto `F` (attivando il famigerato *Blue Screen of Death*). Nel frattempo, deve evitare o neutralizzare i minion ("Prof. Mattana") che pattugliano la stanza.
 2. **Livello 2 (Boss Fight):** Dopo una cutscene narrativa, il giocatore viene trasportato nell'arena finale per affrontare il **Professor Musci**. Il boss attacca a distanza lanciando sanzioni scolastiche (*"Brutto Voto"*, *"Nota sul Registro"*).
 
-Il giocatore parte con **100 HP**. Ogni colpo subìto riduce la vita del 10%. Se gli HP si azzerano o scade il tempo, si viene **BOCCIATI**. Sconfiggendo il Prof. Musci si ottiene la **PROMOZIONE**.
+Il giocatore parte con **10 HP (chiamato Voto)**. Ogni colpo subìto riduce la vita del 10%. Se gli HP si azzerano o scade il tempo, si viene **BOCCIATI**. Sconfiggendo il Prof. Musci si ottiene la **PROMOZIONE**.
 
 ---
 
